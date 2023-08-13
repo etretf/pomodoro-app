@@ -33,36 +33,49 @@ export default function Progress(props){
             </div>
             <div className="border rounded-lg mx-auto max-w-full w-4/5 prose">
                 <h1 className="p-5">Completed Tasks</h1>
-                { numTasks.map(task => <Task/>)}
+                { numTasks.map((task, index) => <Task key={index}/>)}
             </div>
         </div>
     )
 }
 
-//  this will be changed when fetching from API
-function getDate(daysInPast){
-    let date = new Date();
-    date.setDate(today.getDate()-daysInPast);
-    return date;
-}
-let today = new Date();
-today.setDate(today.getDate()-1);
-today.toLocaleDateString('en-us', {weekday:'long'});
-console.log(today);
-// const event = new Date().toLocaleDateString('en-us', {weekday:'long'});
-// console.log(event);
-// for(let i = 0; i < 6; i++){
-//     let weekday = 
-// }
 
 const daysOfTheWeek = [];
+
+
+//  this will be changed when fetching from API?
+function getDate(daysInPast){
+    let date = new Date();
+    date.setDate(date.getDate()-daysInPast);
+    let weekday = date.toLocaleDateString('en-us', {weekday:'long'});
+    return weekday;
+}
+
+function getWeekdays(){
+    for(let i = 7; i > 0; i--){
+        let newWeekday = getDate(i);
+        daysOfTheWeek.push(newWeekday);
+    }
+    console.log(daysOfTheWeek);
+}
+
+getWeekdays();
+
+
+const studySessionData = [0,1,3,4,4,2,0];
+const barColours = ["#FFF","#FFF","#FFF","#FFF","#FFF","#FFF","#FFF"];
 
 const myProgressChart = new Chart('myProgressChart', {
     type:'bar',
     data:{
         labels: daysOfTheWeek,
+        datasets: [{
+            data: studySessionData,
+            backGroundColor: barColours,
+        }]
     },
-    options:{},
+    options:{
+    },
 })
 
 
