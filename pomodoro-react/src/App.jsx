@@ -5,6 +5,7 @@ import Progress from './components/Progress';
 import Home from './components/Home';
 import ErrorPage from './components/ErrorPage';
 import Navbar from './components/Navbar';
+import Styleguide from './components/Styleguide';
 
 function App() {
 
@@ -26,6 +27,7 @@ function handleClick()
                 >
                     <Route index path="study" element={<Home/>}/>
                     <Route path="progress" element={<Progress data={data} handleClick={handleClick}/>}/>
+                    <Route path="styleguide" element={<Styleguide/>}/>
                 </Route>
                 <Route path="*" element={<ErrorPage/>}/>
 
