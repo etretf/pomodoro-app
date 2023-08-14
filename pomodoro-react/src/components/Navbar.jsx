@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 
 export default function Root(){
     const [currentTab, setCurrentTab] = useState("study");
-    const [currentTheme, setCurrentTheme] = useState(true);
+    const [currentTheme, setCurrentTheme] = useState(false);
 
     useEffect(() => {
         const setTheme = currentTheme ? ("data-theme","winter") : ("data-theme","night");

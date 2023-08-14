@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './App.css';
-import { BrowserRouter, Route, Routes, Outlet} from 'react-router-dom';
+import {Route, Routes, BrowserRouter, Outlet} from 'react-router-dom';
 import Progress from './components/Progress';
 import Home from './components/Home';
 import ErrorPage from './components/ErrorPage';
@@ -19,11 +19,33 @@ function handleClick()
 
   return (
     <>
-        <BrowserRouter>
+    <BrowserRouter>
             <Routes>
                 <Route
                     path='/'
-                    element={<Navbar/>}
+                    element={<Navbar />}
+                >
+                    <Route index path="study" element={<Home/>}/>
+                    <Route path="progress" element={<Progress data={data} handleClick={handleClick}/>}/>
+                    <Route path="styleguide" element={<Styleguide/>}/>
+                </Route>
+                <Route path="*" element={<ErrorPage/>}/>
+
+            </Routes>   
+        </BrowserRouter>
+    <Outlet/> 
+    </>
+  );
+}
+
+export default App;
+
+/*
+<BrowserRouter>
+            <Routes>
+                <Route
+                    path='/'
+                    element={<Navbar />}
                 >
                     <Route index path="study" element={<Home/>}/>
                     <Route path="progress" element={<Progress data={data} handleClick={handleClick}/>}/>
@@ -34,8 +56,4 @@ function handleClick()
             </Routes>   
         </BrowserRouter>
         <Outlet/> 
-    </>
-  );
-}
-
-export default App;
+*/
