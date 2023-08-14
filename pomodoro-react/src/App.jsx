@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './App.css';
-import { BrowserRouter, Route, Routes} from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Outlet} from 'react-router-dom';
 import Progress from './components/Progress';
 import Home from './components/Home';
 import ErrorPage from './components/ErrorPage';
@@ -33,6 +33,7 @@ function handleClick()
 
             </Routes>   
         </BrowserRouter>
+        <Outlet/> 
     </>
   );
 }

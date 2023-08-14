@@ -2,17 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    @apply h-full;
+}
+
+#root {
+    @apply flex flex-col;
+}
 
 .btn {
     
 }
 
 .container {
-    @apply  mx-auto;
+    @apply mx-auto;
+}
+
+.grid-container {
+    @apply grid grid-rows-2 container gap-7 py-6 max-h-fit;
+    min-height: 90%;
 }
 
 .full-w-component {
-    @apply rounded-lg col-span-2 p-4 bg-primary;
+    @apply rounded-lg col-span-2 p-4 bg-primary flex justify-center items-center bg-base-200;
 }
 
 .half-w-component {
@@ -35,4 +47,5 @@
 .form-btn {
     @apply flex justify-end gap-3;
 }
+
 

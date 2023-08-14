@@ -9,7 +9,7 @@ export default {
   },
   plugins: [require("@tailwindcss/typography"), require("daisyui")],
   daisyui: {
-    themes: ["cupcake", "pastel"],
+    themes: ["winter", "night"],
   },
 }
 

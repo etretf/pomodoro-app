@@ -5,7 +5,7 @@ import ToDo from "./ToDo";
 
 export default function Home() {
     return (
-      <div className="container grid gap-7">
+      <div className="grid-container container">
         <Pomodoro />
         <ToDo />
         <ChatBot />
