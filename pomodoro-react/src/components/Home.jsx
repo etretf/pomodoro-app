@@ -8,14 +8,16 @@ export default function Home() {
 
   const [timerFullScreen, setTimerFullScreen] = useState(false);
 
+
+
   function togglePomodoro() {
     setTimerFullScreen(prevValue => !prevValue)
   }
     return (
-      <div className="grid-container container">
-        <Pomodoro />
-        <ToDo />
-        <ChatBot />
+      <div className={`grid-container container ${timerFullScreen? "span-2": ""}`}>
+        <Pomodoro handleChange={togglePomodoro}/>
+        {!timerFullScreen && <ToDo layout={timerFullScreen}/>}
+        {!timerFullScreen && <ChatBot layout={timerFullScreen}/>}
       </div>
     );
   }

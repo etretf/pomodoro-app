@@ -20,6 +20,8 @@ body {
 
 .grid-container {
     @apply grid grid-rows-2 container gap-7 py-6 max-h-fit;
+    grid-template-rows: 1fr 1fr;
+    transition: grid-template-rows 0.25s;
     min-height: 90%;
 }
 
@@ -46,6 +48,10 @@ body {
 
 .form-btn {
     @apply flex justify-end gap-3;
+}
+
+.span-2 { 
+    grid-template-rows: 2fr 0fr;
 }
 
 

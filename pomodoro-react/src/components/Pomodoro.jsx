@@ -1,16 +1,15 @@
-export default function Pomodoro()
+import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/solid'
+
+
+export default function Pomodoro(props)
 {
     return(
-     <div tabIndex={0} className="full-w-component collapse collapse-arrow border border-base-300 bg-base-200 focus:bg-primary">
-        
-        <div className="collapse-title text-xl font-medium">
-          Focus me to see content
-          
-        </div>
-        <div className="collapse-content"> 
-          <p>tabIndex={0} attribute is necessary to make the div focusable</p>
-        </div>
-        
+      <div className={`full-w-component relative `}>
+        <label className="swap swap-rotate absolute bottom-2 right-4">
+            <input type="checkbox" onChange={props.handleChange} id='bob'/>
+            <ChevronDownIcon className="swap-off fill-current h-6 w-6 text-white-500 " />
+            <ChevronUpIcon className="swap-on fill-current h-6 w-6 text-white-500 " />
+        </label>
       </div>
     )
 }
