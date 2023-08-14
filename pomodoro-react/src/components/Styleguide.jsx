@@ -41,13 +41,13 @@ export default function Styleguide()
             <br/>
 
             <h2 className="text-2xl">to do items</h2>
-            <div className='flex justify-between bg-secondary items-center gap-7 w-full p-2 rounded-lg'>
+            <div className='task-item'>
                 <input type="checkbox"  className="checkbox" />
-                <div className='prose w-10/12'>
-                    <h3 className="prose-h3: text-lg m-0">BIT2002</h3>
+                <div className='prose task-item-1 '>
+                    <h3 className="prose-h3 m-0">BIT2002</h3>
                     <p className="prose-small">Take notes on Chapter 10 & 11.</p>
                 </div>
-                <button className="btn btn-square ">
+                <button className="btn btn-square">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
                 </button>
                 <button className="btn btn-square">
@@ -56,20 +56,18 @@ export default function Styleguide()
             </div>
 
             <h2 className="text-2xl">to do items-form</h2>
-            <div className='flex justify-between bg-secondary items-center gap-7 w-full p-2 rounded-lg'>
-                    <div className="form-control w-full max-w-xs">
-                    <label className="label">
-                        <span className="label-text">Title</span>
-                    </label>
-                    <input type="text" placeholder="Type here" className="input input-bordered input-sm w-full max-w-x" />
+            <div className="task-item task-item-edit">
+                <form className="w-full item-form">
+                    <input type="text" placeholder="Title" className="input input-bordered input-sm w-full max-w-x" />
+                    <input type="text" placeholder="Description" className="input input-bordered input-sm w-full max-w-x" />
+                    <div className='form-btn'>
+                    <button className='btn btn-secondary btn-sm'type='button'>Cancel</button>
+                    <button className='btn btn-priamry btn-sm'>Save</button>
                     </div>
-                    <div className="form-control w-full max-w-xs">
-                    <label className="label">
-                        <span className="label-text">Description</span>
-                    </label>
-                    <input type="text" placeholder="Type here" className="input input-bordered input-sm w-full max-w-x" />
-                    </div>
-                </div>
+                </form>
+                
+
+            </div>
             </div>
     )
 }

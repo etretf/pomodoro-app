@@ -1,3 +1,38 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.btn {
+    
+}
+
+.container {
+    @apply  mx-auto;
+}
+
+.full-w-component {
+    @apply rounded-lg col-span-2 p-4 bg-primary;
+}
+
+.half-w-component {
+    @apply col-span-1;
+}
+
+.task-item {
+    @apply flex  bg-base-300 items-center gap-4 w-full p-2 rounded-lg;
+}
+
+.task-item-1 {
+    @apply basis-9/12;
+}
+
+
+.item-form {
+    @apply flex flex-col gap-4;
+}
+
+.form-btn {
+    @apply flex justify-end gap-3;
+}
+

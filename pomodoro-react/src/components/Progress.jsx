@@ -9,7 +9,7 @@ export default function Progress(props){
 
     console.log(props);
     return(
-        <div>
+        <div className="container grid gap-7">
             {/* <h1>My progress</h1>
             <Link to="/">Home</Link>
             <button onClick={props.handleClick}>Click me now!</button> */}
@@ -17,20 +17,7 @@ export default function Progress(props){
                 <h1 className="p-5">My progress</h1>
                 <canvas id="myProgressChart" style={{width:'700'}}></canvas>
             </div>
-            <div className="prose-lg">
-            <p>Type 1</p>
-            </div>
 
-            <h2>Type 2</h2>
-
-            <div >
-                <p className="prose-sm">Small</p>
-                <p className="prose-base">Small</p>
-                <p className="prose-lg">Small</p>
-                <p className="prose-xl">Small</p>
-                <p className="prose-2xl">Small</p>
-
-            </div>
             <div className="border rounded-lg mx-auto max-w-full w-4/5 prose">
                 <h1 className="p-5">Completed Tasks</h1>
                 { numTasks.map((task, index) => <Task key={index}/>)}
