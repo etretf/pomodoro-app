@@ -19,7 +19,7 @@ body {
 }
 
 .grid-container {
-    @apply grid grid-rows-2 container gap-7 py-6 max-h-fit;
+    @apply grid grid-rows-2 grid-cols-2 container gap-7 py-6 max-h-fit;
     grid-template-rows: 1fr 1fr;
     transition: grid-template-rows 0.25s;
     min-height: 90%;
@@ -31,6 +31,10 @@ body {
 
 .half-w-component {
     @apply col-span-1;
+}
+
+.to-do-component {
+    @apply gap-2 justify-start overflow-auto;
 }
 
 .task-item {
@@ -54,4 +58,28 @@ body {
     grid-template-rows: 2fr 0fr;
 }
 
+.icon-btn {
+    @apply btn btn-circle btn-ghost
+}
+
+/*scroll bar*/
+/* width */
+::-webkit-scrollbar {
+   @apply w-2 ;
+}
+  
+/* Track */
+::-webkit-scrollbar-track {
+    @apply bg-transparent;
+}
+  
+/* Handle */
+::-webkit-scrollbar-thumb {
+    @apply bg-neutral m-12 rounded;
+}
+  
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    @apply bg-neutral-focus;
+}
 

@@ -65,8 +65,6 @@ export default function Styleguide()
                     <button className='btn btn-priamry btn-sm'>Save</button>
                     </div>
                 </form>
-                
-
             </div>
             </div>
     )
