@@ -25,11 +25,12 @@ function handleClick()
                     path='/'
                     element={<Navbar />}
                 >
-                    <Route index path="study" element={<Home/>}/>
+                    <Route index element={<Home/>}/>
+                    <Route path='study' element={<Home/>}/>
                     <Route path="progress" element={<Progress data={data} handleClick={handleClick}/>}/>
                     <Route path="styleguide" element={<Styleguide/>}/>
                 </Route>
-                <Route path="*" element={<ErrorPage/>}/>
+                <Route path="/*" element={<ErrorPage/>}/>
 
             </Routes>   
         </BrowserRouter>
