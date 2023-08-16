@@ -10,8 +10,12 @@ body {
     @apply flex flex-col;
 }
 
-.btn {
-    
+h2 {
+  @apply text-2xl font-bold;
+}
+
+h3 {
+
 }
 
 .container {
@@ -60,6 +64,10 @@ body {
 
 .icon-btn {
     @apply btn btn-circle btn-ghost
+}
+
+.x-flex {
+    @apply flex justify-between gap-4 p-2 items-center;
 }
 
 /*scroll bar*/
