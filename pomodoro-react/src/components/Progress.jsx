@@ -5,20 +5,20 @@ import { useLocation } from "react-router-dom";
 
 export default function Progress(props){
     
-    const numTasks = [0,1,2,3]
+    const numTasks = [0,1,2,3,4,5,6,7,8]
 
     console.log(props);
     return(
-        <div className="container grid gap-7">
+        <div className="grid-container container prose">
             {/* <h1>My progress</h1>
             <Link to="/">Home</Link>
             <button onClick={props.handleClick}>Click me now!</button> */}
-            <div className="border rounded-lg mx-auto max-w-full w-4/5 prose">
+            <div className="full-w-component">
                 <h1 className="p-5">My progress</h1>
-                <canvas id="myProgressChart" style={{width:'700'}}></canvas>
+                <canvas id="myProgressChart" style={{width:'700px'}}></canvas>
             </div>
 
-            <div className="border rounded-lg mx-auto max-w-full w-4/5 prose">
+            <div className="full-w-component to-do-component">
                 <h1 className="p-5">Completed Tasks</h1>
                 { numTasks.map((task, index) => <Task key={index}/>)}
             </div>
@@ -68,21 +68,14 @@ const myProgressChart = new Chart('myProgressChart', {
 
 function Task(){
     return(
-        <div className="flex border p-3 mb-3 mx-6 rounded max-w-full justify-between prose">
-            <div className="">
-                <h3 className="m-0">
-                    BIT2002
-                </h3>
-                <p>
-                    Take notes on chapter 10 and 11.
-                </p>                      
+        <div className="task-item">
+            <div className='prose task-item-1 '>
+                <h3 className="prose-h3 m-0">BIT2002</h3>
+                <p className="prose-small">Take notes on Chapter 10 & 11.</p>
             </div>
-            <div className="flex items-center">
-                <p>
-                    Completed at 19:23, October 10, 2022.
-                </p>
-            </div>
-
+            <p>
+                Completed at 19:23, October 10, 2022.
+            </p>
         </div>
     )
 }
