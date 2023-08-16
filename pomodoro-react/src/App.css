@@ -15,7 +15,11 @@ h2 {
 }
 
 h3 {
+    @apply text-base font-semibold my-0;
+}
 
+p {
+    @apply text-base;
 }
 
 .container {
@@ -23,14 +27,14 @@ h3 {
 }
 
 .grid-container {
-    @apply grid grid-rows-2 grid-cols-2 container gap-7 py-6 max-h-fit;
+    @apply grid grid-rows-2 grid-cols-2 container gap-7 py-6 ;
     grid-template-rows: 1fr 1fr;
     transition: grid-template-rows 0.25s;
     min-height: 90%;
 }
 
 .full-w-component {
-    @apply rounded-lg col-span-2 p-4 bg-primary flex flex-col justify-center items-center bg-base-200 overflow-y-auto;
+    @apply rounded-lg col-span-2 p-4 bg-primary flex flex-col items-center bg-base-200 max-h-fit min-h-full;
 }
 
 .half-w-component {
@@ -38,7 +42,7 @@ h3 {
 }
 
 .to-do-component {
-    @apply gap-2 justify-start overflow-auto;
+    @apply gap-2 justify-start h-fit;
 }
 
 .task-item {
@@ -67,7 +71,7 @@ h3 {
 }
 
 .x-flex {
-    @apply flex justify-between gap-4 p-2 items-center;
+    @apply flex justify-between gap-4 items-center;
 }
 
 /*scroll bar*/

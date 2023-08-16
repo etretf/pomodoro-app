@@ -9,17 +9,17 @@ export default function Progress(props){
 
     console.log(props);
     return(
-        <div className="grid-container container prose">
+        <div className="grid-container container">
             {/* <h1>My progress</h1>
             <Link to="/">Home</Link>
             <button onClick={props.handleClick}>Click me now!</button> */}
             <div className="full-w-component">
-                <h1 className="p-5">My progress</h1>
+                <h2 className="p-5">My progress</h2>
                 <canvas id="myProgressChart" style={{width:'700px'}}></canvas>
             </div>
 
             <div className="full-w-component to-do-component">
-                <h1 className="p-5">Completed Tasks</h1>
+                <h2 className="p-5">Completed Tasks</h2>
                 { numTasks.map((task, index) => <Task key={index}/>)}
             </div>
         </div>
@@ -69,9 +69,9 @@ const myProgressChart = new Chart('myProgressChart', {
 function Task(){
     return(
         <div className="task-item">
-            <div className='prose task-item-1 '>
-                <h3 className="prose-h3 m-0">BIT2002</h3>
-                <p className="prose-small">Take notes on Chapter 10 & 11.</p>
+            <div className='task-item-1 '>
+                <h3 className="m-0">BIT2002</h3>
+                <p>Take notes on Chapter 10 & 11.</p>
             </div>
             <p>
                 Completed at 19:23, October 10, 2022.
