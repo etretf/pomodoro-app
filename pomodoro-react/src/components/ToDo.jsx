@@ -39,7 +39,14 @@ export default function ToDo()
         setToDoItems(prevValue => {
             const index = prevValue.findIndex(item => item.id === id)
             const newArr = [...prevValue]
-            newArr.splice(index, 1)
+            if(prevValue[index].complete)
+            {
+                newArr[index].display = false;
+            }
+            else
+            {
+                newArr.splice(index, 1)
+            } 
             return(newArr);
         })
         
@@ -93,7 +100,8 @@ export default function ToDo()
                 title: title,
                 desc: desc,
                 complete: false,
-                template: false
+                template: false,
+                display: true
             }
         )
     }
@@ -110,10 +118,12 @@ export default function ToDo()
         setToDoItems(prevValue => prevValue.map(item => item.id === id? {...item, complete: !item.complete} : {...item}))
     }
 
+    
+
+
+    const items = toDoItems.filter(value => value.display)
     console.log(toDoItems)
-
-
-    const items = toDoItems.map(item => (
+    const itemsDisplay = items.map(item => (
         item.template ?
         <ToDoItemTemplate 
         key={item.id} 
@@ -129,6 +139,8 @@ export default function ToDo()
         check={() => toggleTaskComplete(item.id)}
         disabled={showTemplate}/>
     ))
+    
+    
 
 
     return(
@@ -143,7 +155,7 @@ export default function ToDo()
                 Add task</button>
             </div>
             {showTemplate && !editingItem && <ToDoItemTemplate cancelItem={hideTemplate} submitItem={handleSubmit}/>}
-            {items}
+            {itemsDisplay}
         </div>
     )
 }
