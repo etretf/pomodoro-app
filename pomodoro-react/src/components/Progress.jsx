@@ -10,9 +10,6 @@ export default function Progress(props){
     console.log(props);
     return(
         <div className="grid-container container">
-            {/* <h1>My progress</h1>
-            <Link to="/">Home</Link>
-            <button onClick={props.handleClick}>Click me now!</button> */}
             <div className="full-w-component">
                 <h2 className="p-5">My progress</h2>
                 <canvas id="myProgressChart" style={{width:'700px'}}></canvas>
@@ -50,26 +47,12 @@ getWeekdays();
 
 
 const studySessionData = [0,1,3,4,4,2,0];
-const barColours = ["#FFF","#FFF","#FFF","#FFF","#FFF","#FFF","#FFF"];
-
-const myProgressChart = new Chart('myProgressChart', {
-    type:'bar',
-    data:{
-        labels: daysOfTheWeek,
-        datasets: [{
-            data: studySessionData,
-            backGroundColor: barColours,
-        }]
-    },
-    options:{
-    },
-})
 
 
 function Task(){
     return(
-        <div className="task-item">
-            <div className='task-item-1 '>
+        <div className='task-item'>
+            <div className='task-item-1'>
                 <h3 className="m-0">BIT2002</h3>
                 <p>Take notes on Chapter 10 & 11.</p>
             </div>

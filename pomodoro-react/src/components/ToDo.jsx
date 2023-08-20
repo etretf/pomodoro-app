@@ -122,7 +122,7 @@ export default function ToDo()
 
 
     const items = toDoItems.filter(value => value.display)
-    console.log(toDoItems)
+    // console.log(toDoItems)
     const itemsDisplay = items.map(item => (
         item.template ?
         <ToDoItemTemplate 
