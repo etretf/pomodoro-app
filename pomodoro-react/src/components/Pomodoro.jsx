@@ -1,25 +1,27 @@
 import { ChevronDownIcon, ChevronUpIcon, PauseIcon, PlayIcon } from '@heroicons/react/24/solid'
 
-
-
-
 export default function Pomodoro(props){
-   
-  console.log(props.time);
+
+  const seconds = props.time % 60;
+  const minutes = Math.floor(props.time / 60);
+  // console.log(minutes);
+  // console.log(seconds);
+  // console.log(props.time);
+
   return(
       <div className={`full-w-component relative justify-center`}>
 
       <div className="grid grid-flow-col gap-5 text-center auto-cols-max">
         <div className="flex flex-col">
           <span className="countdown font-mono text-5xl">
-            {/* <span style={{"--value":24}}></span> */}
+            <span style={{"--value":minutes}}></span>
           </span>
           min
         </div> 
         <div className="flex flex-col">
           <span className="countdown font-mono text-5xl">
             {/* <span style={{"--value":10}}></span> */}
-            <span style={{"--value": props.time}}></span>
+            <span style={{"--value": seconds}}></span>
           </span>
           sec
         </div>

@@ -8,6 +8,7 @@ import ToDo from "./ToDo";
 const studyTime = 1500; //25 minutes
 const breakTime = 300; // 5minutes
 const longBreakTime = 900; //15 minutes
+const testTime = 5;//5 seconds, using for quick testing, not actual
 
 export default function Home() {
 
@@ -15,11 +16,29 @@ export default function Home() {
   const [numSessions, setNumSessions] = useState(0);
   const [timerFullScreen, setTimerFullScreen] = useState(false);
   const [isCounting, setIsCounting] = useState(false);
-  const [time, setTime] = useState(0);
+  const [time, setTime] = useState(testTime);
 
-  // useEffect(() =>{
 
-  // }, [isCounting]);
+  useEffect(() =>{
+    if(time === 0){
+      setIsCounting(false);
+      setNumSessions(numSessions => numSessions+1);
+      
+      // state is not updating in time to work with this
+      // every 4 sessions, set to break time
+      if(numSessions % 4 === 0){
+      setTime(breakTime);
+    }
+    else setTime(testTime);
+    }
+    if(isCounting && time > -1){
+      const increment = setInterval(handleDecrement, 1000);
+      return () =>{
+        clearInterval(increment);
+      }      
+    }
+  }, [isCounting, time]);
+
 
   // To-do:
   // If the counting state is true, continue to decrement the timer based on the study time every second
@@ -32,13 +51,13 @@ export default function Home() {
   //toggle the playing state
   const handlePlayToggle = () =>{
     isCounting ? setIsCounting(false) : setIsCounting(true);
-    console.log(isCounting);
+    // console.log(isCounting);
   }
 
-  //function to increment the time, may not use
-  function handleIncrement(){
-    setTime(time => time + 1);
-    console.log(time);
+  //function to decrement the time
+  function handleDecrement(){
+      setTime(time => time - 1);
+      // console.log(time);      
   }
 
 
