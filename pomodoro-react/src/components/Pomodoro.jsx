@@ -4,9 +4,7 @@ export default function Pomodoro(props){
 
   const seconds = props.time % 60;
   const minutes = Math.floor(props.time / 60);
-  // console.log(minutes);
-  // console.log(seconds);
-  // console.log(props.time);
+
 
   return(
       <div className={`full-w-component relative justify-center`}>
@@ -27,7 +25,7 @@ export default function Pomodoro(props){
         </div>
       </div>
       <div className='flex p-2 gap-2'>
-        <button className='btn-ghost'>
+        <button className='btn-ghost' onClick={props.handleBeginning}>
           <BackwardIcon className='fill-current h-10 w-10'/>
         </button>
         <button className='btn-ghost' onClick={props.handlePlayToggle}>
@@ -36,7 +34,7 @@ export default function Pomodoro(props){
           <PlayIcon className='fill-current h-10 w-10'/>
           }
         </button>
-        <button className='btn-ghost'>
+        <button className='btn-ghost' onClick={props.handleEnd}>
           <ForwardIcon className='fill-current h-10 w-10'/>
         </button>
         

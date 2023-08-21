@@ -4,15 +4,48 @@ import { useLocation } from "react-router-dom";
 
 
 export default function Progress(props){
-    
+
+    const daysOfTheWeek = getWeekdays();
+
+    //  this will be changed when fetching from API?
+    function getDate(daysInPast){
+        let date = new Date();
+        date.setDate(date.getDate()-daysInPast);
+        let weekday = date.toLocaleDateString('en-us', {weekday:'long'});
+        return weekday;
+    }
+
+    function getWeekdays(){
+        let weekdays = [];
+        for(let i = 7; i > 0; i--){
+            let newWeekday = getDate(i);
+            weekdays.push(newWeekday);
+        }
+        return weekdays;
+    }
+
+
     const numTasks = [0,1,2,3,4,5,6,7,8]
 
     console.log(props);
     return(
         <div className="grid-container container">
-            <div className="full-w-component">
+            <div className="rounded-lg col-span-2 p-4 flex flex-col items-center bg-base-200 p-5 min-h-fit">
                 <h2 className="p-5">My progress</h2>
-                <canvas id="myProgressChart" style={{width:'700px'}}></canvas>
+                    <div className="grid grid-cols-7 gap-4 p-3">
+                        {daysOfTheWeek.map(day => {
+                            return(
+                                <div key={day}>
+                                    <div className="h-48 flex flex-col justify-end pb-3">
+                                        <div className="mx-auto fill-current bg-current h-full border-2 w-5 rounded-full p-3 tooltip tooltip-right" data-tip="Hi :3">
+                                        </div>
+
+                                    </div>
+                                    <h3 className="text-center">{day}</h3>                                
+                                </div>
+                            )
+                        })}
+                    </div>
             </div>
 
             <div className="full-w-component to-do-component">
@@ -24,26 +57,7 @@ export default function Progress(props){
 }
 
 
-const daysOfTheWeek = [];
 
-
-//  this will be changed when fetching from API?
-function getDate(daysInPast){
-    let date = new Date();
-    date.setDate(date.getDate()-daysInPast);
-    let weekday = date.toLocaleDateString('en-us', {weekday:'long'});
-    return weekday;
-}
-
-function getWeekdays(){
-    for(let i = 7; i > 0; i--){
-        let newWeekday = getDate(i);
-        daysOfTheWeek.push(newWeekday);
-    }
-    console.log(daysOfTheWeek);
-}
-
-getWeekdays();
 
 
 const studySessionData = [0,1,3,4,4,2,0];

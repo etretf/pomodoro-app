@@ -18,7 +18,7 @@ export default function Home() {
   const [isCounting, setIsCounting] = useState(false);
   const [time, setTime] = useState(testTime);
   const [finished, setFinished] = useState(false);
-
+  const [sessionType, setSessionType] = useState();
 
   useEffect(() => {
     if(time === 0 && isCounting === true){
@@ -37,11 +37,16 @@ export default function Home() {
   useEffect(() => {
     if(numSessions % 8 === 0 && numSessions !== 0){
       setTime(longBreakTime);
+      setSessionType('long break');
     }
     else if(numSessions % 2 === 0){
       setTime(testTime);
+      setSessionType('study');
     }
-    else setTime(breakTest);
+    else{
+      setTime(breakTest);
+      setSessionType('short break');
+    }
     // console.log(numSessions);
   }, [numSessions]);
 
@@ -65,6 +70,36 @@ export default function Home() {
       // console.log(time);      
   }
 
+  //function resets current timer to the beginning
+  function handleBeginning(){
+    switch (sessionType){
+      case 'study':
+        setTime(studyTime);
+        break;
+      case 'short break':
+        setTime(breakTime);
+        break;
+      case 'long break':
+        setTime(longBreakTime);
+        break;
+    }
+  }
+
+  //function sets current timer to the end
+  function handleEnd(){
+    setTime(0);
+  }
+
+  //function goes back 30 seconds
+  function handleRewind(){
+    setTime(time - 30);
+  }
+
+  //function skips forwards 30 seconds
+  function handleSkip(){
+    setTime(time + 30);
+  }
+
   function showTimeFinished(){
     //to-do: visual indication that time is finished and play sound effect maybe
   }
@@ -78,6 +113,11 @@ export default function Home() {
         <Pomodoro
           handleChange={togglePomodoro} 
           handlePlayToggle={handlePlayToggle}
+          handleBeginning={handleBeginning}
+          handleEnd={handleEnd}
+          handleRewind={handleRewind}
+          handleSkip={handleSkip}
+          showTimeFinished={showTimeFinished}
           isCounting={isCounting}
           time={time}
           />
