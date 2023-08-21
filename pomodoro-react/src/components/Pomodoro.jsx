@@ -1,4 +1,4 @@
-import { ChevronDownIcon, ChevronUpIcon, PauseIcon, PlayIcon } from '@heroicons/react/24/solid'
+import { BackwardIcon, ChevronDownIcon, ChevronUpIcon, ForwardIcon, PauseIcon, PlayIcon } from '@heroicons/react/24/solid'
 
 export default function Pomodoro(props){
 
@@ -11,7 +11,7 @@ export default function Pomodoro(props){
   return(
       <div className={`full-w-component relative justify-center`}>
 
-      <div className="grid grid-flow-col gap-5 text-center auto-cols-max">
+      <div className="grid grid-flow-col gap-5 text-center auto-cols-max mb-3">
         <div className="flex flex-col">
           <span className="countdown font-mono text-5xl">
             <span style={{"--value":minutes}}></span>
@@ -26,13 +26,18 @@ export default function Pomodoro(props){
           sec
         </div>
       </div>
-      <div>
+      <div className='flex p-2 gap-2'>
+        <button className='btn-ghost'>
+          <BackwardIcon className='fill-current h-10 w-10'/>
+        </button>
         <button className='btn-ghost' onClick={props.handlePlayToggle}>
           { props.isCounting ? 
-          <PauseIcon className='fill-current h-6 w-6'/> :
-          <PlayIcon className='fill-current h-6 w-6'/>
+          <PauseIcon className='fill-current h-10 w-10'/> :
+          <PlayIcon className='fill-current h-10 w-10'/>
           }
-          
+        </button>
+        <button className='btn-ghost'>
+          <ForwardIcon className='fill-current h-10 w-10'/>
         </button>
         
       </div>

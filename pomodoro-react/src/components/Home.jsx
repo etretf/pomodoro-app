@@ -9,7 +9,7 @@ const studyTime = 1500; //25 minutes
 const breakTime = 300; // 5minutes
 const longBreakTime = 900; //15 minutes
 const testTime = 5;//5 seconds, using for quick testing, not actual
-
+const breakTest = 3;
 export default function Home() {
 
   const [pomodoroTime, setPomodoroTime] = useState();
@@ -17,19 +17,14 @@ export default function Home() {
   const [timerFullScreen, setTimerFullScreen] = useState(false);
   const [isCounting, setIsCounting] = useState(false);
   const [time, setTime] = useState(testTime);
+  const [finished, setFinished] = useState(false);
 
 
-  useEffect(() =>{
-    if(time === 0){
+  useEffect(() => {
+    if(time === 0 && isCounting === true){
       setIsCounting(false);
-      setNumSessions(numSessions => numSessions+1);
-      
-      // state is not updating in time to work with this
-      // every 4 sessions, set to break time
-      if(numSessions % 4 === 0){
-      setTime(breakTime);
-    }
-    else setTime(testTime);
+      setNumSessions(numSessions+1);
+      console.log('hi');
     }
     if(isCounting && time > -1){
       const increment = setInterval(handleDecrement, 1000);
@@ -39,6 +34,16 @@ export default function Home() {
     }
   }, [isCounting, time]);
 
+  useEffect(() => {
+    if(numSessions % 8 === 0 && numSessions !== 0){
+      setTime(longBreakTime);
+    }
+    else if(numSessions % 2 === 0){
+      setTime(testTime);
+    }
+    else setTime(breakTest);
+    // console.log(numSessions);
+  }, [numSessions]);
 
   // To-do:
   // If the counting state is true, continue to decrement the timer based on the study time every second
@@ -60,13 +65,17 @@ export default function Home() {
       // console.log(time);      
   }
 
+  function showTimeFinished(){
+    //to-do: visual indication that time is finished and play sound effect maybe
+  }
+
 
   function togglePomodoro() {
     setTimerFullScreen(prevValue => !prevValue)
   }
     return (
       <div className={`grid-container container ${timerFullScreen? "span-2": ""}`}>
-        <Pomodoro 
+        <Pomodoro
           handleChange={togglePomodoro} 
           handlePlayToggle={handlePlayToggle}
           isCounting={isCounting}
