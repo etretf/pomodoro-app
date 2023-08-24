@@ -18,14 +18,18 @@ export default function Progress(props){
     function getWeekdays(){
         let weekdays = [];
         for(let i = 7; i > 0; i--){
+            let day = {};
             let newWeekday = getDate(i);
-            weekdays.push(newWeekday);
+            day.weekday = newWeekday;
+            day.numSessions = Math.floor(Math.random() * 7);
+            weekdays.push(day);
         }
         return weekdays;
     }
 
+    console.log(daysOfTheWeek);
 
-    const numTasks = [0,1,2,3,4,5,6,7,8]
+    const numTasks = [0,1,2,3,4,5,6]
 
     console.log(props);
     return(
@@ -35,13 +39,21 @@ export default function Progress(props){
                     <div className="grid grid-cols-7 gap-4 p-10 w-full">
                         {daysOfTheWeek.map(day => {
                             return(
-                                <div key={day}>
-                                    <div className="h-48 flex flex-col justify-end pb-3">
-                                        <div className="mx-auto fill-current bg-base-100 h-full border-2 w-5 rounded-full p-2 transition-all duration-200 ease-in-out hover:bg-current tooltip tooltip-top" data-tip="Hi :3">
+                                <div key={day.weekday}>
+                                    <div className="h-48 flex justify-center pb-3">
+                                        <div className="indicator h-full">
+                                            <span className="indicator-item badge badge-primary p-4">
+                                                <h3 className="font-bold">
+                                                  {day.numSessions}  
+                                                </h3>
+        
+                                            </span>
+                                            <div className="mx-auto fill-current bg-primary-content border-2 w-10 rounded-md p-3 transition-all duration-200 ease-in-out hover:bg-current custom-tooltip" data-tip="hello">
+                                                <span class="custom-tooltip-content">Custom tooltip</span>
+                                            </div>                                            
                                         </div>
-
                                     </div>
-                                    <h3 className="text-center">{day}</h3>                                
+                                    <h3 className="text-center">{day.weekday}</h3>                                
                                 </div>
                             )
                         })}
