@@ -30,14 +30,14 @@ export default function Progress(props){
     console.log(props);
     return(
         <div className="grid-container container">
-            <div className="rounded-lg col-span-2 p-4 flex flex-col items-center bg-base-200 p-5 min-h-fit">
+            <div className="rounded-lg col-span-2 flex flex-col items-center bg-base-200 p-5 min-h-fit">
                 <h2 className="p-5">My progress</h2>
-                    <div className="grid grid-cols-7 gap-4 p-3">
+                    <div className="grid grid-cols-7 gap-4 p-10 w-full">
                         {daysOfTheWeek.map(day => {
                             return(
                                 <div key={day}>
                                     <div className="h-48 flex flex-col justify-end pb-3">
-                                        <div className="mx-auto fill-current bg-current h-full border-2 w-5 rounded-full p-3 tooltip tooltip-right" data-tip="Hi :3">
+                                        <div className="mx-auto fill-current bg-base-100 h-full border-2 w-5 rounded-full p-2 transition-all duration-200 ease-in-out hover:bg-current tooltip tooltip-top" data-tip="Hi :3">
                                         </div>
 
                                     </div>
@@ -65,7 +65,7 @@ const studySessionData = [0,1,3,4,4,2,0];
 
 function Task(){
     return(
-        <div className='task-item'>
+        <div className='task-item '>
             <div className='task-item-1'>
                 <h3 className="m-0">BIT2002</h3>
                 <p>Take notes on Chapter 10 & 11.</p>

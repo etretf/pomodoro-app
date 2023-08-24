@@ -37,6 +37,14 @@ p {
     @apply rounded-lg col-span-2 p-4 bg-primary flex flex-col items-center bg-base-200 max-h-fit min-h-full;
 }
 
+.counter-component-active {
+    @apply rounded-lg col-span-2 p-4 bg-primary flex bg-primary flex-col items-center max-h-fit min-h-full relative justify-center;
+}
+
+.counter-component-inactive {
+    @apply rounded-lg col-span-2 p-4 bg-primary flex bg-base-200 flex-col items-center max-h-fit min-h-full relative justify-center;
+}
+
 .half-w-component {
     @apply col-span-1;
 }
@@ -46,7 +54,7 @@ p {
 }
 
 .task-item {
-    @apply flex  bg-base-300 items-center gap-4 w-full p-2 rounded-lg justify-between;
+    @apply flex  bg-base-100 items-center gap-4 w-full p-3 rounded-lg justify-between;
 }
 
 .task-item-1 {
