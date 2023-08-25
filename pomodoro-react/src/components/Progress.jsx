@@ -33,8 +33,8 @@ export default function Progress(props){
 
     console.log(props);
     return(
-        <div className="grid-container container">
-            <div className="rounded-lg col-span-2 flex flex-col items-center bg-base-200 p-5 min-h-fit">
+        <div className="grid-container container ">
+            <div className="rounded-lg col-span-2 flex flex-col items-center bg-base-200 p-5 min-h-fit ">
                 <h2 className="p-5">My progress</h2>
                     <div className="grid grid-cols-7 gap-4 p-10 w-full">
                         {daysOfTheWeek.map(day => {
