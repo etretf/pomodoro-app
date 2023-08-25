@@ -1,7 +1,7 @@
 import ToDoItem from "./ToDoItem"
 import ToDoItemTemplate from "./ToDoItemTemplate"
 import { PlusIcon } from '@heroicons/react/24/solid'
-import {useState} from "react"
+import {useState, useEffect} from "react"
 import { nanoid } from 'nanoid'
 
 export default function ToDo()
@@ -9,6 +9,13 @@ export default function ToDo()
     const [toDoItems, setToDoItems] = useState([]);
     const [showTemplate, setShowTemplate] = useState(false);
     const [editingItem, setEditingItem] = useState(false)
+
+    // useEffect(() =>{
+    //     console.log(toDoItems);
+    //     getItemsFromLocal();
+    //     console.log(toDoItems);
+    // }, []);
+
 
     /*
     function insertTemplate()
@@ -31,7 +38,16 @@ export default function ToDo()
         ))
     }
 */
-    
+    // function getItemsFromLocal(){
+    //     if(localStorage.getItem('todoItems') !== undefined){
+    //         let userdata = JSON.parse(localStorage.getItem('todoItems'));
+    //         setToDoItems([...toDoItems, userdata]);
+    //     }
+    // }
+
+    // function setItemsToLocal(){
+    //     localStorage.setItem('todoItems', JSON.stringify(toDoItems));
+    // }
 
     function deleteItem(id)
     {
@@ -79,16 +95,16 @@ export default function ToDo()
             setEditingItem(false);
             setToDoItems(prevValue => (
                 prevValue.map(item => item.id === id ? {...item, template: false, title: data.title, desc: data.desc} : {...item, template: false})
-            ))
+            ));
         }
         else 
         {
             setToDoItems(prevValue => {
                 return([...prevValue, generateItem(data.title, data.desc)])
-            })
+            });
         }
         hideTemplate();
-        
+        setItemsToLocal();
 
     }
 
@@ -117,9 +133,6 @@ export default function ToDo()
     {
         setToDoItems(prevValue => prevValue.map(item => item.id === id? {...item, complete: !item.complete} : {...item}))
     }
-
-    
-
 
     const items = toDoItems.filter(value => value.display)
     // console.log(toDoItems)

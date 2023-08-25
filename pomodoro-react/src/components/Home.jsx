@@ -31,8 +31,8 @@ export default function Home() {
         clearInterval(increment);
       }      
     }
-    console.log(sessionType);
-    console.log(numSessions);
+    // console.log(sessionType);
+    // console.log(numSessions);
   }, [isCounting, time]);
 
   useEffect(() => {
