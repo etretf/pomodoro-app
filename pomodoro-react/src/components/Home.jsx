@@ -24,7 +24,6 @@ export default function Home() {
     if(time === 0 && isCounting === true){
       setIsCounting(false);
       setNumSessions(numSessions+1);
-      console.log('hi');
     }
     if(isCounting && time > -1){
       const increment = setInterval(handleDecrement, 1000);
@@ -32,19 +31,21 @@ export default function Home() {
         clearInterval(increment);
       }      
     }
+    console.log(sessionType);
+    console.log(numSessions);
   }, [isCounting, time]);
 
   useEffect(() => {
-    if(numSessions % 8 === 0 && numSessions !== 0){
+    if(numSessions % 7 === 0 && numSessions !== 0){
       setTime(longBreakTime);
       setSessionType('long break');
     }
     else if(numSessions % 2 === 0){
-      setTime(testTime);
+      setTime(studyTime);
       setSessionType('study');
     }
     else{
-      setTime(breakTest);
+      setTime(breakTime);
       setSessionType('short break');
     }
     // console.log(numSessions);
