@@ -1,6 +1,25 @@
 import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend,
+  } from 'chart.js';
+import { Bar } from 'react-chartjs-2';
+  
+ChartJS.register(
+CategoryScale,
+LinearScale,
+BarElement,
+Title,
+Tooltip,
+Legend
+);
 
 
 export default function Progress(props){
@@ -15,6 +34,15 @@ export default function Progress(props){
         return weekday;
     }
 
+    function getWeekdaysOnly(){
+        let weekdays = [];
+        for(let i = 7; i > 0; i--){
+            let newWeekday = getDate(i);
+            weekdays.push(newWeekday);
+        }
+        return weekdays;       
+    }
+
     function getWeekdays(){
         let weekdays = [];
         for(let i = 7; i > 0; i--){
@@ -27,30 +55,61 @@ export default function Progress(props){
         return weekdays;
     }
 
-    console.log(daysOfTheWeek);
+    // console.log(daysOfTheWeek);
 
     const numTasks = [0,1,2,3,4,5,6]
+
+    const ProgressBar  = (numSessions) => {
+        console.log(Object.values(numSessions)[0])
+        let height = Object.values(numSessions)[0];
+        return(
+            <div className={`progress-bar flex-grow h-${height * 10}`} data-tip="hello">
+                <span className="custom-tooltip-content">Custom tooltip</span>
+            </div>  
+        )
+    }
+
+    const options = {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+        },
+    };
+
+    const labels = getWeekdaysOnly();
+
+    const data = {
+        labels,
+        datasets: [
+            {
+                label: 'Study sessions',
+                data: daysOfTheWeek.map((day) => day.numSessions),
+                backgroundColor: 'rgb(75, 192, 192)'
+            }
+        ]
+    }
+    
 
     console.log(props);
     return(
         <div className="grid-container container ">
-            <div className="rounded-lg col-span-2 flex flex-col items-center bg-base-200 p-5 min-h-fit ">
+            <div className="rounded-lg col-span-2 flex flex-col items-center bg-base-200 p-5 progress-data">
                 <h2 className="p-5">My progress</h2>
-                    <div className="grid grid-cols-7 gap-4 p-10 w-full">
+                    <div className="grid grid-cols-7 gap-4 p-10 w-full mt-auto">
                         {daysOfTheWeek.map(day => {
                             return(
                                 <div key={day.weekday}>
-                                    <div className="h-48 flex justify-center pb-3">
-                                        <div className="indicator h-full">
-                                            <span className="indicator-item badge badge-primary p-4">
+                                    <div className="flex justify-center pb-3">
+                                        <div className="indicator">
+                                            <span className="indicator-item badge badge-secondary p-4">
                                                 <h3 className="font-bold">
                                                   {day.numSessions}  
                                                 </h3>
         
                                             </span>
-                                            <div className="mx-auto fill-current bg-primary-content border-2 w-10 rounded-md p-3 transition-all duration-200 ease-in-out hover:bg-current custom-tooltip" data-tip="hello">
-                                                <span class="custom-tooltip-content">Custom tooltip</span>
-                                            </div>                                            
+                                            <ProgressBar numSessions={day.numSessions}/>                                      
                                         </div>
                                     </div>
                                     <h3 className="text-center">{day.weekday}</h3>                                
@@ -59,7 +118,10 @@ export default function Progress(props){
                         })}
                     </div>
             </div>
-
+            <div className="rounded-lg col-span-2 flex flex-col items-center bg-base-200 p-5 progress-data">
+                <h2 className="p-5">My progress</h2>
+                <Bar  options={options} data={data}/>
+            </div>
             <div className="full-w-component to-do-component">
                 <h2 className="p-5">Completed Tasks</h2>
                 { numTasks.map((task, index) => <Task key={index}/>)}
