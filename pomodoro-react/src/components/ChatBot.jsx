@@ -6,7 +6,8 @@ import { nanoid } from "nanoid";
 
 const openai = new OpenAI(
     {
-        apiKey: import.meta.env.VITE_API_KEY,
+        //apiKey: import.meta.env.VITE_API_KEY,
+        apiKey: "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",
         dangerouslyAllowBrowser: true
     }
 )
