@@ -94,7 +94,8 @@ export default function Progress(props){
 
     console.log(props);
     return(
-        <div className="grid-container container ">
+        <div className="container flex flex-col gap-4 max-h-fit min-h-full">
+            {/*
             <div className="rounded-lg col-span-2 flex flex-col items-center bg-base-200 p-5 progress-data">
                 <h2 className="p-5">My progress</h2>
                     <div className="grid grid-cols-7 gap-4 p-10 w-full mt-auto">
@@ -117,15 +118,17 @@ export default function Progress(props){
                             )
                         })}
                     </div>
-            </div>
-            <div className="rounded-lg col-span-2 flex flex-col items-center bg-base-200 p-5 progress-data">
+                    </div> */}
+            <div className="rounded-lg col-span-2 p-4 flex flex-col items-center bg-base-200">
                 <h2 className="p-5">My progress</h2>
-                <Bar  options={options} data={data}/>
+
+                    <Bar options={options} data={data}/>
+
             </div>
-            <div className="full-w-component to-do-component">
+            <div className="rounded-lg col-span-2 p-4 flex flex-col items-center bg-base-200 to-do-component">
                 <h2 className="p-5">Completed Tasks</h2>
                 { numTasks.map((task, index) => <Task key={index}/>)}
-            </div>
+                </div> 
         </div>
     )
 }

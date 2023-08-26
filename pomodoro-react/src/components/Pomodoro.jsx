@@ -9,15 +9,19 @@ export default function Pomodoro(props){
   return(
       <div className={`full-w-component relative justify-center`}>
 
+      <div className='flex gap-7 m-10'>
+          <p className="text-primary text-2xl">Break (count: 1)</p>
+          <p className="text-neutral text-2xl">Study (count: 2)</p>
+      </div>
       <div className="grid grid-flow-col gap-5 text-center auto-cols-max mb-3">
         <div className="flex flex-col">
-          <span className="countdown font-mono text-5xl">
+          <span className="countdown font-mono text-9xl">
             <span style={{"--value":minutes}}></span>
           </span>
           min
         </div> 
         <div className="flex flex-col">
-          <span className="countdown font-mono text-5xl">
+          <span className="countdown font-mono text-9xl">
             {/* <span style={{"--value":10}}></span> */}
             <span style={{"--value": seconds}}></span>
           </span>
@@ -35,7 +39,7 @@ export default function Pomodoro(props){
           }
         </button>
         <button className='btn-ghost' onClick={props.handleEnd}>
-          <ForwardIcon className='fill-current h-10 w-10'/>
+          <ForwardIcon className='fill-current h-10 w-10 '/>
         </button>
         
       </div>
