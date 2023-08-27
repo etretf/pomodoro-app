@@ -7,7 +7,7 @@ export default function Pomodoro(props){
 
 
   return(
-      <div className={`full-w-component relative justify-center`}>
+      <div className={`full-w-component relative justify-center overflow-auto`}>
 
       <div className='flex gap-7 m-10'>
           <p className="text-primary text-2xl">Break (count: 1)</p>

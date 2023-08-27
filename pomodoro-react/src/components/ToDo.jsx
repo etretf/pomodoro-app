@@ -10,14 +10,8 @@ export default function ToDo()
     const [showTemplate, setShowTemplate] = useState(false);
     const [editingItem, setEditingItem] = useState(false)
 
-    // useEffect(() =>{
-    //     console.log(toDoItems);
-    //     getItemsFromLocal();
-    //     console.log(toDoItems);
-    // }, []);
 
 
-    /*
     function insertTemplate()
     {
         setToDoItems(prevValue => {
@@ -37,17 +31,18 @@ export default function ToDo()
             [...prevValue, generateItem("item")]
         ))
     }
-*/
-    // function getItemsFromLocal(){
-    //     if(localStorage.getItem('todoItems') !== undefined){
-    //         let userdata = JSON.parse(localStorage.getItem('todoItems'));
-    //         setToDoItems([...toDoItems, userdata]);
-    //     }
-    // }
 
-    // function setItemsToLocal(){
-    //     localStorage.setItem('todoItems', JSON.stringify(toDoItems));
-    // }
+    function getItemsFromLocal(){
+        if(localStorage.getItem('todoItems') !== undefined){
+            let userdata = JSON.parse(localStorage.getItem('todoItems'));
+            setToDoItems([...toDoItems, userdata]);
+        }
+        else console.log('null');
+    }
+
+    function setItemsToLocal(){
+        localStorage.setItem('todoItems', JSON.stringify(toDoItems));
+    }
 
     function deleteItem(id)
     {
