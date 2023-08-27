@@ -121,8 +121,9 @@ export default function Progress(props){
                     </div> */}
             <div className="rounded-lg col-span-2 p-4 flex flex-col items-center bg-base-200">
                 <h2 className="p-5">My progress</h2>
-
+                <div className="graph-div">
                     <Bar options={options} data={data}/>
+                </div>
 
             </div>
             <div className="rounded-lg col-span-2 p-4 flex flex-col items-center bg-base-200 to-do-component">

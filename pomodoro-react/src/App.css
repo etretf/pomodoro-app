@@ -126,3 +126,9 @@ p {
 .progress-bar {
     @apply  mx-auto fill-current bg-primary border-2 w-10 rounded-md p-3 transition-all duration-200 ease-in-out hover:bg-current custom-tooltip;
 }
+
+.graph-div {
+    min-width: 70%;
+    aspect-ratio: 2/1;
+}
+
