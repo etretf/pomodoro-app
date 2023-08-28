@@ -19,33 +19,43 @@ export default function ChatBot(props)
     const [chatQuestion, setChatQuestion] = useState("")
     const [questionToDisplay, setQuestionToDisplay] = useState("")
     const [generatingText, setGenerating] = useState(false)
-
+    const [chatError, setChatError] = useState(false);
     
     const handleSubmit = async (event, message) => {
         event.preventDefault()
-        setChatQuestion("")
-        setQuestionToDisplay(message);
-        setGenerating(true)
-        let contentToAdd = {question: message,content: ""}
-        await openai.chat.completions.create(
-            {
-                model: "gpt-3.5-turbo",
-                messages: [
-                  {
-                    role: "user",
-                    content: `${message} (in less than 5 words)`
-                  }],
-              }
-            ).then((result) => {
-              contentToAdd.content = result.choices[0].message.content;
-              props.setChat(prevValue => ([...prevValue, contentToAdd]))
-              setGenerating(false)
-              console.log(props.chat)
-            }).catch(error => console.log(error))
+        if(message.length < 1){
+            setChatError(true)
+        }
+        else{
+            setChatQuestion("")
+            setQuestionToDisplay(message);
+            setGenerating(true)
+            let contentToAdd = {question: message,content: ""}
+            await openai.chat.completions.create(
+                {
+                    model: "gpt-3.5-turbo",
+                    messages: [
+                    {
+                        role: "user",
+                        content: `${message} (in less than 5 words)`
+                    }],
+                }
+                ).then((result) => {
+                contentToAdd.content = result.choices[0].message.content;
+                props.setChat(prevValue => ([...prevValue, contentToAdd]))
+                setGenerating(false)
+                console.log(props.chat)
+                }).catch(error => console.log(error)) 
+        }
+
     }
 
     const handleChange = (event) => {
         setChatQuestion(event.target.value)
+    }
+    
+    const handleFocus = (event) => {
+        setChatError(false);
     }
 
     const clearChat = () => {
@@ -63,11 +73,11 @@ export default function ChatBot(props)
     return(
         <div className="full-w-component half-w-component max-container">
             
-            <form className="x-flex w-full" onSubmit={event => handleSubmit(event, chatQuestion)}> 
+            <form className="x-flex w-full" onSubmit={event => handleSubmit(event, chatQuestion)} onFocus={event => handleFocus(event)}> 
                 <input 
                 type="text" 
-                placeholder="What would you like to know?" 
-                className="input input-primary input-sm w-full max-w-x" 
+                placeholder={chatError ? "Please enter a question." : "What would you like to know?"}
+                className={chatError ? "input input-error input-sm w-full max-w-x" : "input input-primary input-sm w-full max-w-x"} 
                 value={chatQuestion}
                 onChange={handleChange}/>
                 <button className='btn btn-sm btn-primary'>Go</button>
