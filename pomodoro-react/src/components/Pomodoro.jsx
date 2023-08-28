@@ -9,12 +9,12 @@ export default function Pomodoro(props){
   return(
       <div className={`full-w-component relative justify-center overflow-auto`}>
 
-      <div className='flex gap-7 m-10'>
-          <p className={ props.sessionType === 'short break' || props.sessionType === 'long break' ? "text-primary text-xl" : "text-neutral text-xl"}>
-            Break (count: {Math.floor(props.numSessions / 2)} )
+      <div className='btn no-animation pointer-events-none bg-base-300 flex gap-7 m-10 p-2 join'>
+          <p className={ props.sessionType === 'short break' || props.sessionType === 'long break' ? "text-primary text-xl join-item" : "text-neutral text-xl join-item"}>
+            Break: {Math.floor(props.numSessions / 2)} 
           </p>
-          <p className={ props.sessionType === 'study'? "text-primary text-xl" : "text-neutral text-xl"}>
-            Study (count: {Math.ceil(props.numSessions / 2)})
+          <p className={ props.sessionType === 'study'? "text-primary text-xl join-item" : "text-neutral text-xl join-item"}>
+            Study: {Math.ceil(props.numSessions / 2)}
           </p>
       </div>
       <div className="grid grid-flow-col gap-5 text-center auto-cols-max mb-3">
