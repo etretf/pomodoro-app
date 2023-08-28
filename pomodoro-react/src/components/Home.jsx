@@ -121,6 +121,8 @@ export default function Home(props) {
           handleSkip={handleSkip}
           showTimeFinished={showTimeFinished}
           isCounting={isCounting}
+          sessionType={sessionType}
+          numSessions={numSessions}
           time={time}
           />
         {!timerFullScreen && <ToDo layout={timerFullScreen}/>}
