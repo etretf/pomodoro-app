@@ -11,7 +11,7 @@ export default function ChatBubble(props)
                     </div>
                 </div>
                 
-                <div className="chat-bubble bg-base-100">{props.chatItem.content}</div>
+                <div className="chat-bubble bg-base-100 text-current">{props.chatItem.content}</div>
         </div>
     )
 }
