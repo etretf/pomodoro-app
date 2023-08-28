@@ -1,9 +1,10 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { current } from "immer";
 
 
 export default function Root(){
-    const [currentTab, setCurrentTab] = useState("study");
+    const [currentTab, setCurrentTab] = useState(useLocation().pathname);
     const [currentTheme, setCurrentTheme] = useState(false);
 
     useEffect(() => {
@@ -11,14 +12,14 @@ export default function Root(){
         document.querySelector("html").setAttribute("data-theme",setTheme);
     }, [currentTheme])
 
-    function switchTab(id) {
+    function switchTab(id){
         setCurrentTab(id)
     }
 
-    function switchTheme(event)
-    {
+    function switchTheme(event){
         setCurrentTheme(event.target.checked)
     }
+
     return(
         <>
         <nav className="navbar bg-base-100 container">
@@ -40,15 +41,15 @@ export default function Root(){
         <div className="navbar-end join">
             <Link 
             to="/study" 
-            className={`btn join-item btn-xs btn-ghost ${currentTab === "study" && "btn-active"}`}
+            className={`btn join-item btn-xs btn-ghost ${currentTab === "/study" && "btn-active"}`}
             id="study" 
-            onClick={() => switchTab("study")}>
+            onClick={() => switchTab("/study")}>
                 Study</Link>
             <Link 
             to="/progress" 
-            className={`btn join-item btn-xs btn-ghost ${currentTab === "progress" && "btn-active"}`}
+            className={`btn join-item btn-xs btn-ghost ${currentTab === "/progress" && "btn-active"}`}
             id="progress" 
-            onClick={() => switchTab("progress")}>
+            onClick={() => switchTab("/progress")}>
                 Progress</Link>
         </div> 
         </nav>
