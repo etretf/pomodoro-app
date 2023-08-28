@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import {
@@ -25,6 +25,19 @@ Legend
 export default function Progress(props){
 
     const daysOfTheWeek = getWeekdays();
+    const [toDoItems, setToDoItems] = useState(
+        JSON.parse(localStorage.getItem("toDoItems")) || []
+    )
+
+    useEffect(() => {
+        if(toDoItems)
+        {
+            let toDisplay = toDoItems.filter(item => item.complete);
+            setToDoItems(toDisplay);
+        }
+    }, [])
+
+    console.log("items",toDoItems)
 
     //  this will be changed when fetching from API?
     function getDate(daysInPast){
@@ -56,8 +69,6 @@ export default function Progress(props){
     }
 
     // console.log(daysOfTheWeek);
-
-    const numTasks = [0,1,2,3,4,5,6]
 
     const ProgressBar  = (numSessions) => {
         console.log(Object.values(numSessions)[0])
@@ -94,7 +105,7 @@ export default function Progress(props){
 
     console.log(props);
     return(
-        <div className="container flex flex-col gap-4 max-h-fit min-h-full">
+        <div className="container flex flex-col gap-4 max-h-fit min-h-full p-4">
             {/*
             <div className="rounded-lg col-span-2 flex flex-col items-center bg-base-200 p-5 progress-data">
                 <h2 className="p-5">My progress</h2>
@@ -128,7 +139,7 @@ export default function Progress(props){
             </div>
             <div className="rounded-lg col-span-2 p-4 flex flex-col items-center bg-base-200 to-do-component">
                 <h2 className="p-5">Completed Tasks</h2>
-                { numTasks.map((task, index) => <Task key={index}/>)}
+                {toDoItems.map((task, index) => <Task key={index} {...task}/>)}
                 </div> 
         </div>
     )
@@ -141,12 +152,13 @@ export default function Progress(props){
 const studySessionData = [0,1,3,4,4,2,0];
 
 
-function Task(){
+function Task(props){
+    console.log(props)
     return(
         <div className='task-item '>
             <div className='task-item-1'>
-                <h3 className="m-0">BIT2002</h3>
-                <p>Take notes on Chapter 10 & 11.</p>
+                <h3 className="m-0">{props.title}</h3>
+                <p>{props.desc}</p>
             </div>
             <p>
                 Completed at 19:23, October 10, 2022.

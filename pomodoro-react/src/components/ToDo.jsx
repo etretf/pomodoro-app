@@ -6,11 +6,16 @@ import { nanoid } from 'nanoid'
 
 export default function ToDo()
 {
-    const [toDoItems, setToDoItems] = useState([]);
+    const [toDoItems, setToDoItems] = useState(
+        JSON.parse(localStorage.getItem("toDoItems")) || []
+    );
+    console.log(toDoItems);
     const [showTemplate, setShowTemplate] = useState(false);
     const [editingItem, setEditingItem] = useState(false)
 
-
+    useEffect(() => {
+        localStorage.setItem("toDoItems", JSON.stringify(toDoItems))
+    },[toDoItems])
 
     function insertTemplate()
     {
@@ -30,18 +35,6 @@ export default function ToDo()
         setToDoItems(prevValue => (
             [...prevValue, generateItem("item")]
         ))
-    }
-
-    function getItemsFromLocal(){
-        if(localStorage.getItem('todoItems') !== undefined){
-            let userdata = JSON.parse(localStorage.getItem('todoItems'));
-            setToDoItems([...toDoItems, userdata]);
-        }
-        else console.log('null');
-    }
-
-    function setItemsToLocal(){
-        localStorage.setItem('todoItems', JSON.stringify(toDoItems));
     }
 
     function deleteItem(id)
@@ -64,7 +57,6 @@ export default function ToDo()
     }
 
     
-
     function hideTemplate(id)
     {
         if(id)
@@ -99,7 +91,6 @@ export default function ToDo()
             });
         }
         hideTemplate();
-        setItemsToLocal();
 
     }
 
@@ -147,12 +138,12 @@ export default function ToDo()
         check={() => toggleTaskComplete(item.id)}
         disabled={showTemplate}/>
     ))
-    
+    console.log(items)
     
 
 
     return(
-        <div className="full-w-component half-w-component to-do-component">
+        <div className="full-w-component half-w-component to-do-component max-container">
             <div className="x-flex w-full">
                 <h2>My Tasks</h2>
                 <button 

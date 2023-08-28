@@ -27,14 +27,14 @@ p {
 }
 
 .grid-container {
-    @apply grid grid-rows-2 grid-cols-2 container gap-7 py-6 ;
+    @apply grid grid-rows-2 grid-cols-2 container gap-7 py-4;
     grid-template-rows: 1fr 1fr;
     transition: grid-template-rows 0.25s;
     min-height: 90%;
 }
 
 .full-w-component {
-    @apply rounded-lg col-span-2 p-4 bg-primary flex flex-col items-center bg-base-200 max-h-fit min-h-full;
+    @apply rounded-lg col-span-2 p-4 bg-primary flex flex-col items-center bg-base-200 min-h-full max-h-fit;
 }
 
 .half-w-component {
@@ -46,13 +46,12 @@ p {
 }
 
 .task-item {
-    @apply flex  bg-base-100 items-center gap-4 w-full p-3 rounded-lg justify-between;
+    @apply flex  bg-base-100 items-center gap-4 w-full py-0.5 px-3 rounded-lg justify-between;
 }
 
 .task-item-1 {
     @apply basis-9/12;
 }
-
 
 .item-form {
     @apply flex flex-col gap-4;
@@ -132,3 +131,8 @@ p {
     aspect-ratio: 2/1;
 }
 
+.max-container {
+    @apply w-full overflow-auto;
+    height: fit-content;
+    max-height: 500px;
+}

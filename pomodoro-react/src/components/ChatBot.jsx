@@ -12,9 +12,10 @@ const openai = new OpenAI(
     }
 )
 
-export default function ChatBot()
+export default function ChatBot(props)
 {
-    const [chat, setChat] = useState([]);
+    //const [chat, setChat] = useState([
+    //]);
     const [chatQuestion, setChatQuestion] = useState("")
     const [questionToDisplay, setQuestionToDisplay] = useState("")
     const [generatingText, setGenerating] = useState(false)
@@ -37,9 +38,9 @@ export default function ChatBot()
               }
             ).then((result) => {
               contentToAdd.content = result.choices[0].message.content;
-              setChat(prevValue => ([...prevValue, contentToAdd]))
+              props.setChat(prevValue => ([...prevValue, contentToAdd]))
               setGenerating(false)
-              console.log(chat)
+              console.log(props.chat)
             }).catch(error => console.log(error))
     }
 
@@ -48,10 +49,10 @@ export default function ChatBot()
     }
 
     const clearChat = () => {
-        setChat([])
+        props.setChat([])
     }
 
-    const currentChat = chat.map(item => (
+    const currentChat = props.chat.map(item => (
         <ChatBubble 
         key={nanoid()} 
         chatItem={item} />
@@ -60,7 +61,7 @@ export default function ChatBot()
     currentChat.reverse()
 
     return(
-        <div className="full-w-component half-w-component to-do-component">
+        <div className="full-w-component half-w-component max-container">
             
             <form className="x-flex w-full" onSubmit={event => handleSubmit(event, chatQuestion)}> 
                 <input 
@@ -72,13 +73,16 @@ export default function ChatBot()
                 <button className='btn btn-sm btn-primary'>Go</button>
             </form>
             <button 
-            className="btn btn-xs btn-ghost mr-auto" 
+            className="btn btn-xs btn-ghost mr-auto my-3" 
             onClick={clearChat}
-            disabled={!chat.length}
+            disabled={!props.chat.length}
             >Clear Chat</button>
-            {generatingText && <ChatBubble chatItem={{question: questionToDisplay, content: "Typing..."}}/>}
-            {currentChat}
-            <ChatBubble chatItem={{question:"", content: "Hi! I'm Pomodoro, a tomato!"}}/>
+            <div className="max-container">
+                {generatingText && <ChatBubble chatItem={{question: questionToDisplay, content: "Typing..."}}/>}
+                {currentChat}
+                <ChatBubble chatItem={{question:"", content: "Hi! I'm Pomodoro, a tomato!"}}/>
+            </div>
+            
         </div>
     )
 }

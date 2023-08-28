@@ -23,7 +23,7 @@ export default function ToDoItemTemplate(props)
 
     return(
         <div className='task-item task-item-edit'>
-            <form className="w-full item-form" onSubmit={() => props.submitItem(event, inputData, props.id)}>
+            <form className="w-full item-form py-2" onSubmit={() => props.submitItem(event, inputData, props.id)}>
                     <input 
                     type="text" 
                     placeholder="Title" 

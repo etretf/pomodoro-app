@@ -10,7 +10,8 @@ const breakTime = 300; // 5minutes
 const longBreakTime = 900; //15 minutes
 const testTime = 5;//5 seconds, using for quick testing, not actual
 const breakTest = 3;
-export default function Home() {
+
+export default function Home(props) {
 
   const [pomodoroTime, setPomodoroTime] = useState();
   const [numSessions, setNumSessions] = useState(0);
@@ -123,7 +124,7 @@ export default function Home() {
           time={time}
           />
         {!timerFullScreen && <ToDo layout={timerFullScreen}/>}
-        {!timerFullScreen && <ChatBot layout={timerFullScreen}/>}
+        {!timerFullScreen && <ChatBot layout={timerFullScreen} chat={props.chat} setChat={props.setChat}/>}
       </div>
     );
   }
