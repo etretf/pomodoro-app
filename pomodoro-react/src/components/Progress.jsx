@@ -28,6 +28,9 @@ export default function Progress(props){
     const [toDoItems, setToDoItems] = useState(
         JSON.parse(localStorage.getItem("toDoItems")) || []
     )
+    const [progressData, setProgressData] = useState(
+        JSON.parse(localStorage.getItem("sessionData")) || []
+    )
 
     useEffect(() => {
         if(toDoItems)
@@ -35,11 +38,18 @@ export default function Progress(props){
             let toDisplay = toDoItems.filter(item => item.complete);
             setToDoItems(toDisplay);
         }
+        if(progressData)
+        {
+            formatSessionData(progressData);
+        }
     }, [])
 
-    // console.log("items",toDoItems)
 
-    //  this will be changed when fetching from API?
+    function formatSessionData(sessionData){
+        console.log(sessionData);
+    }
+
+    // function gets the date for a specific number of days in the past
     function getDate(daysInPast){
         let date = new Date();
         date.setDate(date.getDate()-daysInPast);
@@ -47,6 +57,7 @@ export default function Progress(props){
         return weekday;
     }
 
+    // function gets the previous 7 days
     function getWeekdaysOnly(){
         let weekdays = [];
         for(let i = 7; i > 0; i--){
@@ -56,6 +67,7 @@ export default function Progress(props){
         return weekdays;       
     }
 
+    //function gets the previous 7 days and generates a random number of study sessions for each day
     function getWeekdays(){
         let weekdays = [];
         for(let i = 7; i > 0; i--){
@@ -68,26 +80,7 @@ export default function Progress(props){
         return weekdays;
     }
 
-    // console.log(daysOfTheWeek);
-
-    const ProgressBar  = (numSessions) => {
-        console.log(Object.values(numSessions)[0])
-        let height = Object.values(numSessions)[0];
-        return(
-            <div className={`progress-bar flex-grow h-${height * 10}`} data-tip="hello">
-                <span className="custom-tooltip-content">Custom tooltip</span>
-            </div>  
-        )
-    }
-
-    const options = {
-        responsive: true,
-        plugins: {
-          legend: {
-            position: 'top',
-          },
-        },
-    };
+    // Chart
 
     const labels = getWeekdaysOnly();
 
@@ -101,7 +94,15 @@ export default function Progress(props){
             }
         ]
     }
-    
+
+    const options = {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+        },
+    };    
 
     return(
         <div className="container flex flex-col gap-4 max-h-fit min-h-full p-4">

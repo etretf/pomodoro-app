@@ -26,6 +26,21 @@ const [isCounting, setIsCounting] = useState(false);
 const [time, setTime] = useState(studyTime);
 const [finished, setFinished] = useState(false);
 const [sessionType, setSessionType] = useState();
+const [progressData, setProgressData] = useState(
+    JSON.parse(localStorage.getItem("sessionData")) || []
+);
+
+useEffect(() => {
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    const day = date.getDate();
+
+    let userSessions = progressData;
+    console.log(userSessions);
+    const dataEntry = {year:year, month:month, day:day, numSessions:numSessions}
+
+}, [numSessions])
 
 useEffect(() => {
     if(time === 0 && isCounting === true){
@@ -137,21 +152,3 @@ function handleEnd(){
 }
 
 export default App;
-
-/*
-<BrowserRouter>
-            <Routes>
-                <Route
-                    path='/'
-                    element={<Navbar />}
-                >
-                    <Route index path="study" element={<Home/>}/>
-                    <Route path="progress" element={<Progress data={data} handleClick={handleClick}/>}/>
-                    <Route path="styleguide" element={<Styleguide/>}/>
-                </Route>
-                <Route path="*" element={<ErrorPage/>}/>
-
-            </Routes>   
-        </BrowserRouter>
-        <Outlet/> 
-*/
