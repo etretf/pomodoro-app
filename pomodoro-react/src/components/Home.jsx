@@ -12,7 +12,6 @@ const testTime = 5;//5 seconds, using for quick testing, not actual
 const breakTest = 3;
 
 export default function Home(props) {
-
   const [pomodoroTime, setPomodoroTime] = useState();
   const [numSessions, setNumSessions] = useState(0);
   const [timerFullScreen, setTimerFullScreen] = useState(false);

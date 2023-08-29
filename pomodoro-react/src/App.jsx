@@ -10,7 +10,7 @@ import Styleguide from './components/Styleguide';
 function App() {
 
 const [data, setData] = useState({key:'value'});
-const [chat, setChat] = useState([{},{},{}, {}, {}, {}, {}, {}]);
+const [chat, setChat] = useState([{1:2},{3:4}]);
 
 console.log(chat);
 
@@ -28,7 +28,7 @@ function handleClick()
                     path='/'
                     element={<Navbar />}
                 >
-                    <Route index element={<Home/>}/>
+                    <Route index element={<Home chat={chat} setChat={setChat}/>}/>
                     <Route path='study' element={<Home chat={chat} setChat={setChat}/>}/>
                     <Route path="progress" element={<Progress data={data} handleClick={handleClick}/>}/>
                     <Route path="styleguide" element={<Styleguide/>}/>

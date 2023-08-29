@@ -16,6 +16,7 @@ export default function ChatBot(props)
 {
     //const [chat, setChat] = useState([
     //]);
+    console.log("chat" + {props})
     const [chatQuestion, setChatQuestion] = useState("")
     const [questionToDisplay, setQuestionToDisplay] = useState("")
     const [generatingText, setGenerating] = useState(false)
