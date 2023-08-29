@@ -3,9 +3,12 @@ import { useState, useEffect } from "react";
 import { current } from "immer";
 
 
-export default function Root(){
+export default function Root(props){
     const [currentTab, setCurrentTab] = useState(useLocation().pathname);
     const [currentTheme, setCurrentTheme] = useState(false);
+
+    const seconds = props.time % 60;
+    const minutes = Math.floor(props.time / 60);
 
     useEffect(() => {
         const setTheme = currentTheme ? ("data-theme","winter") : ("data-theme","night");
@@ -36,10 +39,10 @@ export default function Root(){
             </label>
             {/* mini-timer */}
             {
-                currentTab === '/progress' &&
+                currentTab === '/progress' && props.isCounting &&
                 <div className="mini-timer join ml-5">
-                    <div className="join-item text-base btn no-animation pointer-events-none">Study</div>
-                    <div className="join-item text-base btn no-animation pointer-events-none">20:31</div>
+                    <div className="join-item text-base btn no-animation pointer-events-none">{props.sessionType === 'study' ? "Study" : "Break"}</div>
+                    <div className="join-item text-base btn no-animation pointer-events-none w-20">{minutes}:{ seconds < 10 ? "0" + seconds : seconds}</div>
                 </div>                
             }
 

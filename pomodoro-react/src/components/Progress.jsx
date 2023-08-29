@@ -37,7 +37,7 @@ export default function Progress(props){
         }
     }, [])
 
-    console.log("items",toDoItems)
+    // console.log("items",toDoItems)
 
     //  this will be changed when fetching from API?
     function getDate(daysInPast){
@@ -103,7 +103,6 @@ export default function Progress(props){
     }
     
 
-    console.log(props);
     return(
         <div className="container flex flex-col gap-4 max-h-fit min-h-full p-4">
             {/*
@@ -153,7 +152,6 @@ const studySessionData = [0,1,3,4,4,2,0];
 
 
 function Task(props){
-    console.log(props)
     return(
         <div className='task-item '>
             <div className='task-item-1'>

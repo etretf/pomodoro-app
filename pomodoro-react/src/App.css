@@ -127,7 +127,7 @@ p {
 }
 
 .graph-div {
-    min-width: 70%;
+    width: 70%;
     aspect-ratio: 2/1;
 }
 
