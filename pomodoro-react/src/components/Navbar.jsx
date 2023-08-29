@@ -53,7 +53,7 @@ export default function Root(props){
         <div className="navbar-end join">
             <Link 
             to="/study" 
-            className={`btn join-item btn-xs btn-ghost ${currentTab === "/study" && "btn-active"}`}
+            className={`btn join-item btn-xs btn-ghost ${currentTab === "/study" || currentTab === '/' ? "btn-active" : null}`}
             id="study" 
             onClick={() => switchTab("/study")}>
                 Study</Link>

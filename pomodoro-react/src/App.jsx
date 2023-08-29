@@ -19,29 +19,47 @@ const longBreakTime = 900; //15 minutes
 const testTime = 5;//5 seconds, using for quick testing, not actual
 const breakTest = 3;
 
-// console.log(chat);
+// console.log(chat);`
 
-const [numSessions, setNumSessions] = useState(0);
+
+const [numSessions, setNumSessions] = useState(
+    (JSON.parse(localStorage.getItem('numSessions'))) || 0
+);
 const [isCounting, setIsCounting] = useState(false);
 const [time, setTime] = useState(studyTime);
-const [finished, setFinished] = useState(false);
 const [sessionType, setSessionType] = useState();
 const [progressData, setProgressData] = useState(
     JSON.parse(localStorage.getItem("sessionData")) || []
 );
 
 useEffect(() => {
+    localStorage.setItem('numSessions', numSessions);
     const date = new Date();
     const year = date.getFullYear();
     const month = date.getMonth();
     const day = date.getDate();
     const fullDate = `${day}/${month}/${year}`;
-    console.log(fullDate);
-
-    let userSessions = progressData;
+    
+    let userSessions = [...progressData];
     // const dataEntry = {year:year, month:month, day:day, numSessions:numSessions}
-    const dataEntry = {date: fullDate, numSessions:numSessions}
-    userSessions.push(dataEntry);
+    const dataEntry = {fullDate: fullDate, date: date, numSessions:numSessions}
+
+    //check in existing array for object with key = date or fullDate
+    //find index for that object 
+    //update the count
+
+    //if it does not exist in the array, then add to a duplicate array of progress data
+    //then set localStorage with the new array
+
+    const toUpdateIdx = userSessions.findIndex(i => i.fullDate === fullDate);
+    if(toUpdateIdx === -1){
+        userSessions.push(dataEntry);
+    }
+    else if(toUpdateIdx !== -1){
+        userSessions[toUpdateIdx].date = date;
+        userSessions[toUpdateIdx].numSessions = numSessions;
+    }
+    localStorage.setItem("sessionData", JSON.stringify(userSessions))
     console.log(userSessions);
 }, [numSessions])
 
