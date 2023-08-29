@@ -6,6 +6,7 @@ import Home from './components/Home';
 import ErrorPage from './components/ErrorPage';
 import Navbar from './components/Navbar';
 import Styleguide from './components/Styleguide';
+import { nanoid } from 'nanoid';
 
 function App() {
 
@@ -21,7 +22,6 @@ const breakTest = 3;
 // console.log(chat);
 
 const [numSessions, setNumSessions] = useState(0);
-const [timerFullScreen, setTimerFullScreen] = useState(false);
 const [isCounting, setIsCounting] = useState(false);
 const [time, setTime] = useState(studyTime);
 const [finished, setFinished] = useState(false);
@@ -35,11 +35,14 @@ useEffect(() => {
     const year = date.getFullYear();
     const month = date.getMonth();
     const day = date.getDate();
+    const fullDate = `${day}/${month}/${year}`;
+    console.log(fullDate);
 
     let userSessions = progressData;
+    // const dataEntry = {year:year, month:month, day:day, numSessions:numSessions}
+    const dataEntry = {date: fullDate, numSessions:numSessions}
+    userSessions.push(dataEntry);
     console.log(userSessions);
-    const dataEntry = {year:year, month:month, day:day, numSessions:numSessions}
-
 }, [numSessions])
 
 useEffect(() => {

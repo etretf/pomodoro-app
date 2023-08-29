@@ -9,7 +9,7 @@ export default function ToDo()
     const [toDoItems, setToDoItems] = useState(
         JSON.parse(localStorage.getItem("toDoItems")) || []
     );
-    console.log(toDoItems);
+    // console.log(toDoItems);
     const [showTemplate, setShowTemplate] = useState(false);
     const [editingItem, setEditingItem] = useState(false)
 
@@ -138,7 +138,7 @@ export default function ToDo()
         check={() => toggleTaskComplete(item.id)}
         disabled={showTemplate}/>
     ))
-    console.log(items)
+    // console.log(items)
     
 
 
