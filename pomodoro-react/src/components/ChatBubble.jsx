@@ -1,4 +1,4 @@
-
+import tomato from "../img/tomato.png"
 
 export default function ChatBubble(props)
 {
@@ -7,7 +7,7 @@ export default function ChatBubble(props)
                 <div className="chat-header">{props.chatItem.question}</div>
                 <div className="chat-image avatar">
                     <div className="w-10 rounded-full">
-                    <img src="https://static.vecteezy.com/system/resources/previews/010/672/228/original/cute-funny-tomato-sticker-character-hand-drawn-cartoon-kawaii-character-illustration-icon-isolated-on-green-background-tomato-character-concept-vector.jpg" />
+                    <img src={tomato} />
                     </div>
                 </div>
                 
