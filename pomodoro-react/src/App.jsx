@@ -22,9 +22,7 @@ const breakTest = 3;
 // console.log(chat);`
 
 
-const [numSessions, setNumSessions] = useState(
-    (JSON.parse(localStorage.getItem('numSessions'))) || 0
-);
+const [numSessions, setNumSessions] = useState();
 const [isCounting, setIsCounting] = useState(false);
 const [time, setTime] = useState(studyTime);
 const [sessionType, setSessionType] = useState();
@@ -32,8 +30,23 @@ const [progressData, setProgressData] = useState(
     JSON.parse(localStorage.getItem("sessionData")) || []
 );
 
+// useEffect(() => {
+//     const date = new Date();
+//     const year = date.getFullYear();
+//     const month = date.getMonth();
+//     const day = date.getDate();
+//     const fullDate = `${day}/${month}/${year}`;
+//     let currentData = [];
+//     if(localStorage.getItem('sessionData')){
+//         currentData = JSON.parse(localStorage.getItem('progressData'));
+//         console.log(currentData);
+//         // const idx = currentData.findIndex(i => i.fullDate === fullDate);
+//         // setNumSessions(currentData[idx].numSessions);
+//     }
+// }, []);
+
 useEffect(() => {
-    localStorage.setItem('numSessions', numSessions);
+    console.log('Number of sessions change');
     const date = new Date();
     const year = date.getFullYear();
     const month = date.getMonth();
@@ -52,12 +65,19 @@ useEffect(() => {
     //then set localStorage with the new array
 
     const toUpdateIdx = userSessions.findIndex(i => i.fullDate === fullDate);
+    console.log(toUpdateIdx);
     if(toUpdateIdx === -1){
         userSessions.push(dataEntry);
     }
     else if(toUpdateIdx !== -1){
         userSessions[toUpdateIdx].date = date;
-        userSessions[toUpdateIdx].numSessions = numSessions;
+        if(numSessions){
+            userSessions[toUpdateIdx].numSessions = numSessions;    
+        }
+        else {
+            userSessions[toUpdateIdx].numSessions = 0;
+            setNumSessions(0);
+        }
     }
     localStorage.setItem("sessionData", JSON.stringify(userSessions))
     console.log(userSessions);
