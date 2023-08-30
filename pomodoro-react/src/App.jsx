@@ -10,6 +10,12 @@ import { nanoid } from 'nanoid';
 
 function App() {
 
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = date.getMonth();
+  const day = date.getDate();
+  const fullDate = `${day}/${month}/${year}`;
+
 const [data, setData] = useState({key:'value'});
 const [chat, setChat] = useState([{1:2},{3:4}]);
 //time in seconds
@@ -22,13 +28,43 @@ const breakTest = 3;
 // console.log(chat);`
 
 
-const [numSessions, setNumSessions] = useState();
+//const [numSessions, setNumSessions] = useState();
 const [isCounting, setIsCounting] = useState(false);
 const [time, setTime] = useState(studyTime);
 const [sessionType, setSessionType] = useState();
-const [progressData, setProgressData] = useState(
-    JSON.parse(localStorage.getItem("sessionData")) || []
+const [progressData, setProgressData] = useState(() => {
+      if (localStorage.getItem("sessionData"))
+      {
+        const arrayToReturn = JSON.parse(localStorage.getItem("sessionData"))
+        const dateExists = arrayToReturn.find(item => item.fullDate === fullDate)
+        console.log("hello",dateExists)
+        return((dateExists) ? [...arrayToReturn] : [...arrayToReturn, {fullDate: fullDate, date: date, count: 0}] )
+      }
+      else {
+        return ( [{fullDate: fullDate, date: date, count: 0}] )
+      }
+  }
 );
+
+//index of the today's date item in progressData
+
+const currentIndex = progressData.findIndex(item => item.fullDate === fullDate);
+console.log(currentIndex)
+
+console.log("Array", progressData)
+
+//limiting progressData to only contain the latest 7 entries
+/*
+useEffect(() => {
+    const newArray = progressData;
+    const length = newArray.length;
+    if(length > 7)
+    {
+      setProgressData(newArray.splice(length-7))
+    }
+}, [])
+*/
+
 
 // useEffect(() => {
 //     const date = new Date();
@@ -45,6 +81,7 @@ const [progressData, setProgressData] = useState(
 //     }
 // }, []);
 
+/*
 useEffect(() => {
     console.log('Number of sessions change');
     const date = new Date();
@@ -81,12 +118,38 @@ useEffect(() => {
     }
     localStorage.setItem("sessionData", JSON.stringify(userSessions))
     console.log(userSessions);
-}, [numSessions])
+}, [numSessions])*/
+
+
+
 
 useEffect(() => {
+    console.log("update")
+    localStorage.setItem("sessionData", JSON.stringify(progressData))
+}, [progressData[currentIndex].count]);
+
+useEffect(() => {
+    if(progressData[currentIndex].count % 7 === 0 && progressData[currentIndex].count !== 0){
+      setTime(longBreakTime);
+      setSessionType('long break');
+    }
+    else if(progressData[currentIndex].count % 2 === 0){
+      setTime(studyTime);
+      setSessionType('study');
+    }
+    else{
+      setTime(breakTime);
+      setSessionType('short break');
+    }
+    // console.log(numSessions);
+  }, [progressData[currentIndex].count]);
+
+  useEffect(() => {
     if(time === 0 && isCounting === true){
       setIsCounting(false);
-      setNumSessions(numSessions+1);
+      const newArr = progressData;
+      newArr[currentIndex].count = newArr[currentIndex].count + 1;
+      setProgressData(newArr);
     }
     if(isCounting && time > -1){
       const increment = setInterval(handleDecrement, 1000);
@@ -97,22 +160,6 @@ useEffect(() => {
     // console.log(sessionType);
     // console.log(numSessions);
   }, [isCounting, time]);
-
-  useEffect(() => {
-    if(numSessions % 7 === 0 && numSessions !== 0){
-      setTime(longBreakTime);
-      setSessionType('long break');
-    }
-    else if(numSessions % 2 === 0){
-      setTime(studyTime);
-      setSessionType('study');
-    }
-    else{
-      setTime(breakTime);
-      setSessionType('short break');
-    }
-    // console.log(numSessions);
-  }, [numSessions]);
 
 //toggle the playing state
 const handlePlayToggle = () =>{
@@ -144,6 +191,7 @@ function handleBeginning(){
 //function sets current timer to the end
 function handleEnd(){
   setTime(0);
+  setIsCounting(true);
 }
 
 
@@ -158,7 +206,7 @@ function handleEnd(){
                         <Route index element={<Home 
                             chat={chat} 
                             setChat={setChat}
-                            numSessions={numSessions}
+                            numSessions={progressData[currentIndex].count}
                             isCounting={isCounting}
                             time={time}
                             sessionType={sessionType}
@@ -171,7 +219,7 @@ function handleEnd(){
                         <Route path='study' element={<Home 
                             chat={chat} 
                             setChat={setChat}
-                            numSessions={numSessions}
+                            numSessions={progressData[currentIndex].count}
                             isCounting={isCounting}
                             time={time}
                             sessionType={sessionType}
