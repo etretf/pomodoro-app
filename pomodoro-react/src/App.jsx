@@ -31,7 +31,19 @@ useEffect(() => {
     }
 }, [])
 
-console.log(isMobile)
+useEffect(() => {
+    if(!isMobile){
+        setOpenTab('all');
+        console.log(openTab);
+    }
+    if(isMobile){
+        // default tab is timer
+        setOpenTab('timer');
+    }
+}, [isMobile])
+
+
+
 
 const [data, setData] = useState({key:'value'});
 const [chat, setChat] = useState([{1:2},{3:4}]);
@@ -54,7 +66,7 @@ const [progressData, setProgressData] = useState(() => {
       {
         const arrayToReturn = JSON.parse(localStorage.getItem("sessionData"))
         const dateExists = arrayToReturn.find(item => item.fullDate === fullDate)
-        console.log("hello",dateExists)
+        // console.log("hello",dateExists)
         return((dateExists) ? [...arrayToReturn] : [...arrayToReturn, {fullDate: fullDate, date: date, count: 0}] )
       }
       else {
@@ -66,9 +78,9 @@ const [progressData, setProgressData] = useState(() => {
 //index of the today's date item in progressData
 
 const currentIndex = progressData.findIndex(item => item.fullDate === fullDate);
-console.log(currentIndex)
+// console.log(currentIndex)
 
-console.log("Array", progressData)
+// console.log("Array", progressData)
 
 //limiting progressData to only contain the latest 7 entries
 
@@ -141,7 +153,7 @@ useEffect(() => {
 
 
 useEffect(() => {
-    console.log("update")
+    // console.log("update")
     localStorage.setItem("sessionData", JSON.stringify(progressData))
 }, [progressData[currentIndex].count]);
 

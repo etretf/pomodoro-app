@@ -72,7 +72,7 @@ export default function ChatBot(props)
     currentChat.reverse()
 
     return(
-        <div className={`home-component max-container ${props.openTab !== 'chat' ? 'hidden' : 'flex flex-col col-span-1'}`}>
+        <div className={`home-component max-container ${props.openTab !== 'chat' && props.openTab !== 'all' ? 'hidden' : ''} ${props.openTab === 'all' && 'flex flex-col half-w-component'}`}>
             
             <form className="x-flex w-full" onSubmit={event => handleSubmit(event, chatQuestion)} onFocus={event => handleFocus(event)}> 
                 <input 
