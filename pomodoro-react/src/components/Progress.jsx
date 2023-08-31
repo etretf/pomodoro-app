@@ -22,15 +22,39 @@ Legend
 );
 
 
-export default function Progress(props){
 
+
+export default function Progress(props){
     const daysOfTheWeek = getWeekdays();
+    const [weeklyArray, setWeeklyArray] = useState([
+        createDateString(6),
+        createDateString(5),
+        createDateString(4),
+        createDateString(3),
+        createDateString(2),
+        createDateString(1),
+        createDateString(0)
+    ])
     const [toDoItems, setToDoItems] = useState(
         JSON.parse(localStorage.getItem("toDoItems")) || []
     )
     const [progressData, setProgressData] = useState(
         JSON.parse(localStorage.getItem("sessionData")) || []
     )
+
+    console.log("progress",weeklyArray)
+
+    //function will generate an object for each dat in the past 7 days
+    function createDateString(daysToSubtract)
+    {
+        let dateToConvert = new Date(props.date);
+        dateToConvert.setDate(dateToConvert.getDate() - daysToSubtract)
+        const year = dateToConvert.getFullYear();
+        const month = dateToConvert.getMonth() + 1;
+        const day = dateToConvert.getDate();
+        const fullDate = `${day}/${month}/${year}`;
+        return {fullDate, dateToConvert, count:0};
+    }
 
     useEffect(() => {
         if(toDoItems)
@@ -42,6 +66,16 @@ export default function Progress(props){
         {
             formatSessionData(progressData);
         }
+
+        //updating date count of the relevant dates in the past 7 days 
+        setWeeklyArray(prevValue => (
+            prevValue.map(item => {
+                const indexOfSessionDate = progressData.findIndex(i => i.fullDate === item.fullDate)
+                return({...item, count: indexOfSessionDate > -1 ? progressData[indexOfSessionDate].count : item.count})
+            }))
+        )
+
+
     }, [])
 
 
@@ -82,16 +116,24 @@ export default function Progress(props){
 
     // Chart
 
-    const labels = getWeekdaysOnly();
+    
+
+
+    //const labels = getWeekdaysOnly();
+    const labels = weeklyArray.map((item, index) => {
+        const shortDate = item.fullDate.slice(0,-5);
+        return(index == 6 ? "Today" :  shortDate)
+    });
 
     const data = {
+        //labels,
         labels,
         datasets: [
             {
                 label: 'Study sessions',
-                data: daysOfTheWeek.map((day) => day.numSessions),
+                data: weeklyArray.map(item => item.count),
                 backgroundColor: 'rgb(75, 192, 192)'
-            }
+            },
         ]
     }
 

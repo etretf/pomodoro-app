@@ -12,7 +12,7 @@ function App() {
 
   const date = new Date();
   const year = date.getFullYear();
-  const month = date.getMonth();
+  const month = date.getMonth() + 1;
   const day = date.getDate();
   const fullDate = `${day}/${month}/${year}`;
 
@@ -54,7 +54,7 @@ console.log(currentIndex)
 console.log("Array", progressData)
 
 //limiting progressData to only contain the latest 7 entries
-/*
+
 useEffect(() => {
     const newArray = progressData;
     const length = newArray.length;
@@ -63,7 +63,7 @@ useEffect(() => {
       setProgressData(newArray.splice(length-7))
     }
 }, [])
-*/
+
 
 
 // useEffect(() => {
@@ -229,7 +229,7 @@ function handleEnd(){
                             handleEnd={handleEnd}
                             />}
                             />
-                        <Route path="progress" element={<Progress data={data}/>}/>
+                        <Route path="progress" element={<Progress date={date}/>}/>
                         <Route path="styleguide" element={<Styleguide/>}/>
                     </Route>
                     <Route path="/*" element={<ErrorPage/>}/>                    
