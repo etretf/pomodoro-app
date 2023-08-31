@@ -27,7 +27,7 @@ p {
 }
 
 .grid-container {
-    @apply grid grid-rows-2 grid-cols-2 container gap-7 py-4;
+    @apply grid grid-rows-2 grid-cols-2 container gap-7 py-4 sm:h-10;
     grid-template-rows: 1fr 1fr;
     transition: grid-template-rows 0.25s;
     min-height: 90%;
@@ -135,4 +135,20 @@ p {
     @apply w-full overflow-auto;
     height: fit-content;
     max-height: 500px;
+}
+
+.todo, .chatbot {
+    @apply hidden sm:block;
+}
+
+@media (max-width: 639px){
+    .pomodoro{
+        grid-template-rows: 2fr 0fr;
+        min-height: 80%;
+    }
+}
+
+
+.mobile-nav-bottom { 
+
 }

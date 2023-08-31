@@ -18,7 +18,7 @@ export default function Home(props) {
     setTimerFullScreen(prevValue => !prevValue)
   }
     return (
-      <div className={`grid-container container ${timerFullScreen? "span-2": ""}`}>
+      <div className={`grid-container container ${timerFullScreen? "span-2": ""} pomodoro`}>
         <Pomodoro
           handleChange={togglePomodoro} 
           handlePlayToggle={props.handlePlayToggle}

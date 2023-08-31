@@ -1,6 +1,7 @@
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { current } from "immer";
+import { ChatBubbleOvalLeftIcon, ClipboardDocumentCheckIcon, ClockIcon } from "@heroicons/react/24/solid";
 
 
 export default function Root(props){
@@ -66,6 +67,28 @@ export default function Root(props){
         </div> 
         </nav>
         <Outlet/>
+        <footer className="mobile-nav-bottom sm:hidden">
+            <div className="w-full py-2 flex justify-center gap-8">
+                <div className="min-h-fit">
+                    <button className="btn btn-ghost">
+                        <ChatBubbleOvalLeftIcon/>
+                        Chat
+                    </button>
+                </div>
+                <div>
+                    <button className="btn btn-ghost">
+                        <ClockIcon/>
+                        Timer
+                    </button>
+                </div>
+                <div>
+                    <button className="btn btn-ghost">
+                        <ClipboardDocumentCheckIcon/>
+                        To-do
+                    </button>
+                </div>
+            </div>
+        </footer>
         </>    
     )
 
