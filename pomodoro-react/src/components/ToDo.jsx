@@ -143,7 +143,7 @@ export default function ToDo()
 
 
     return(
-        <div className="full-w-component half-w-component to-do-component max-container">
+        <div className="full-w-component half-w-component to-do-component max-container my-tasks">
             <div className="x-flex w-full">
                 <h2>My Tasks</h2>
                 <button 
