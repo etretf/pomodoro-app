@@ -7,7 +7,7 @@ export default function Pomodoro(props){
 
 
   return(
-      <div className={`full-w-component relative justify-center overflow-auto pomodoro`}>
+      <div className={`full-w-component relative justify-center overflow-auto`}>
 
       <div className='btn no-animation pointer-events-none bg-base-300 flex gap-7 m-10 p-2 join'>
           <p className={ props.sessionType === 'short break' || props.sessionType === 'long break' ? "text-primary text-xl join-item" : "text-neutral text-xl join-item"}>
@@ -48,7 +48,7 @@ export default function Pomodoro(props){
         
       </div>
 
-        <label className="swap swap-rotate absolute bottom-2 right-4 fullScreen">
+        <label className="swap swap-rotate absolute bottom-2 right-4">
             <input type="checkbox" onChange={props.handleChange} id='bob'/>
             <ChevronDownIcon className="swap-off fill-current h-6 w-6 text-white-500 " />
             <ChevronUpIcon className="swap-on fill-current h-6 w-6 text-white-500 " />

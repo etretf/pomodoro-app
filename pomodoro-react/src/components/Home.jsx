@@ -18,7 +18,7 @@ export default function Home(props) {
     setTimerFullScreen(prevValue => !prevValue)
   }
     return (
-      <div className={`grid-container container ${timerFullScreen ? "span-2": ""}`}>
+      <div className={`grid-container container ${timerFullScreen? "span-2": ""}`}>
         <Pomodoro
           handleChange={togglePomodoro} 
           handlePlayToggle={props.handlePlayToggle}
@@ -32,8 +32,8 @@ export default function Home(props) {
           numSessions={props.numSessions}
           time={props.time}
           />
-          {!timerFullScreen && <ToDo layout={timerFullScreen}/>}
-          {!timerFullScreen && <ChatBot layout={timerFullScreen} chat={props.chat} setChat={props.setChat}/>}          
+        {!timerFullScreen && <ToDo layout={timerFullScreen}/>}
+        {!timerFullScreen && <ChatBot layout={timerFullScreen} chat={props.chat} setChat={props.setChat}/>}
       </div>
     );
   }

@@ -72,7 +72,7 @@ export default function ChatBot(props)
     currentChat.reverse()
 
     return(
-        <div className="full-w-component half-w-component max-container chatbot">
+        <div className="full-w-component half-w-component max-container">
             
             <form className="x-flex w-full" onSubmit={event => handleSubmit(event, chatQuestion)} onFocus={event => handleFocus(event)}> 
                 <input 
