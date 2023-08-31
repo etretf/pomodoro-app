@@ -1,12 +1,14 @@
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { current } from "immer";
-import { ChatBubbleOvalLeftIcon, ClipboardDocumentCheckIcon, ClockIcon } from "@heroicons/react/24/solid";
+import { BookmarkIcon, ChartBarIcon, ChatBubbleOvalLeftIcon, ClipboardDocumentCheckIcon, ClockIcon, DocumentCheckIcon } from "@heroicons/react/24/solid";
 
 
 export default function Root(props){
     const [currentTab, setCurrentTab] = useState(useLocation().pathname);
     const [currentTheme, setCurrentTheme] = useState(false);
+
+    props.handleSectionSwitch(currentTab);
 
     const seconds = props.time % 60;
     const minutes = Math.floor(props.time / 60);
@@ -23,6 +25,8 @@ export default function Root(props){
     function switchTheme(event){
         setCurrentTheme(event.target.checked)
     }
+
+    console.log(props.currentSection);
 
     return(
         <>
@@ -51,20 +55,29 @@ export default function Root(props){
         <div className="navbar-end join">
             <Link 
             to="/study" 
-            className={`btn join-item btn-xs btn-ghost ${currentTab === "/study" || currentTab === '/' ? "btn-active" : null}`}
+            className={`btn join-item btn-sm sm:btn-xs btn-ghost ${currentTab === "/study" ? "btn-active" : null}`}
             id="study" 
-            onClick={() => switchTab("/study")}>
+            onClick={() => 
+            {
+                switchTab("/study");
+                props.handleSectionSwitch('study');
+            }}>
                 Study</Link>
             <Link 
             to="/progress" 
-            className={`btn join-item btn-xs btn-ghost ${currentTab === "/progress" && "btn-active"}`}
+            className={`btn join-item btn-sm sm:btn-xs btn-ghost ${currentTab === "/progress" && "btn-active"}`}
             id="progress" 
-            onClick={() => switchTab("/progress")}>
+            onClick={() => 
+            {
+                switchTab("/progress");
+                props.handleSectionSwitch('progress');
+            }}>
                 Progress</Link>
         </div> 
         </nav>
         <Outlet/>
-        <footer className="mobile-nav-bottom sm:hidden">
+        { props.currentSection === '/study' &&
+        <footer className="study-footer-nav sm:hidden">
             <div className="w-full py-2 flex justify-center gap-8">
                 <div>
                     <button onClick={()=>props.handleTab('chat')} className={`btn btn-ghost btn-md rounded-full ${props.openTab === 'chat' ? 'bg-base-200' : ''}`}>
@@ -85,7 +98,27 @@ export default function Root(props){
                     </button>
                 </div>
             </div>
-        </footer>
+        </footer>        
+        }
+        { props.currentSection === '/progress' && 
+        <footer className="progress-footer-nav">
+        <div className="w-full py-2 flex justify-center px-10">
+                <div>
+                    <button onClick={()=>props.handleTab('studyprogress')} className={`btn btn-ghost btn-md rounded-full mb-2 ${props.openTab === 'studyprogress' ? 'bg-base-200' : ''}`}>
+                        <ChartBarIcon className="w-10 block pb-2"/>
+                        Study Progress
+                    </button>
+                </div>
+                <div>
+                    <button onClick={()=>props.handleTab('tasks')} className={`btn btn-ghost btn-md rounded-full ${props.openTab === 'tasks' ? 'bg-base-200' : ''}`}>
+                        <DocumentCheckIcon className="w-10 block pb-2"/>
+                        Completed Tasks
+                    </button>
+                </div>
+            </div>            
+        </footer>        
+        }
+
         </>    
     )
 

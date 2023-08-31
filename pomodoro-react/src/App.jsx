@@ -7,6 +7,7 @@ import ErrorPage from './components/ErrorPage';
 import Navbar from './components/Navbar';
 import Styleguide from './components/Styleguide';
 import { nanoid } from 'nanoid';
+import { useLocation } from 'react-router-dom';
 
 function App() {
 
@@ -18,10 +19,15 @@ function App() {
 
 // for mobile tabs
 const [openTab, setOpenTab] = useState('timer');
+const [currentSection, setCurrentSection] = useState();
 const [isMobile, setIsMobile] = useState(window.innerWidth <= 640);
 
 const handleWindowResize = () => {
     setIsMobile(window.innerWidth <= 640);
+}
+
+const setLocation = (location) => {
+    setCurrentSection(location);
 }
 
 useEffect(() => {
@@ -39,6 +45,7 @@ useEffect(() => {
     if(isMobile){
         // default tab is timer
         setOpenTab('timer');
+        console.log('timer default');
     }
 }, [isMobile])
 
@@ -223,11 +230,18 @@ function handleEnd(){
   setIsCounting(true);
 }
 
-//function for handling study page tab switches
+//function for handling tab switches
 
 function handleStudyTabSwitch(tabName){
     setOpenTab(tabName);
 }
+
+//function for handling section switches (study vs. progress)
+function handleSectionSwitch(sectionName){
+    setCurrentSection(sectionName);
+}
+
+console.log(openTab);
 
   return (
     <>
@@ -235,7 +249,7 @@ function handleStudyTabSwitch(tabName){
             <Routes>
                     <Route
                         path='/'
-                        element={<Navbar openTab={openTab} handleTab={handleStudyTabSwitch}  time={time} sessionType={sessionType} isCounting={isCounting} />}
+                        element={<Navbar handleSectionSwitch={handleSectionSwitch} currentSection={currentSection} openTab={openTab} handleTab={handleStudyTabSwitch}  time={time} sessionType={sessionType} isCounting={isCounting} />}
                     >
                         <Route index element={<Home
                             openTab={openTab} 

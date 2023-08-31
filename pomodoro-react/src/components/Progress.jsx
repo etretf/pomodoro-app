@@ -147,7 +147,7 @@ export default function Progress(props){
     };    
 
     return(
-        <div className="container flex flex-col gap-4 max-h-fit min-h-full p-4">
+        <div className="container flex flex-col gap-4 min-h-fit p-4">
             {/*
             <div className="rounded-lg col-span-2 flex flex-col items-center bg-base-200 p-5 progress-data">
                 <h2 className="p-5">My progress</h2>
@@ -179,10 +179,10 @@ export default function Progress(props){
                 </div>
 
             </div>
-            <div className="rounded-lg col-span-2 p-4 flex flex-col items-center bg-base-200 to-do-component">
+            <div className={`rounded-lg col-span-2 p-4 items-center bg-base-200 to-do-component ${props.openTab === 'tasks' ? 'flex flex-col' : 'hidden'}`}>
                 <h2 className="p-5">Completed Tasks</h2>
                 {toDoItems.map((task, index) => <Task key={index} {...task}/>)}
-                </div> 
+            </div> 
         </div>
     )
 }
