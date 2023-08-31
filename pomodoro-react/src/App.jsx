@@ -40,14 +40,21 @@ useEffect(() => {
 useEffect(() => {
     if(!isMobile){
         setOpenTab('all');
-        console.log(openTab);
     }
     if(isMobile){
         // default tab is timer
-        setOpenTab('timer');
-        console.log('timer default');
     }
 }, [isMobile])
+
+useEffect(() => {
+    if(currentSection === '/progress'){
+        setOpenTab('studyprogress');
+    }
+    else if(currentSection === '/study') {
+        setOpenTab('timer');
+    }
+}, [currentSection]);
+
 
 
 
@@ -279,7 +286,7 @@ console.log(openTab);
                             handleEnd={handleEnd}
                             />}
                             />
-                        <Route path="progress" element={<Progress date={date}/>}/>
+                        <Route path="progress" element={<Progress date={date} openTab={openTab}/>}/>
                         <Route path="styleguide" element={<Styleguide/>}/>
                     </Route>
                     <Route path="/*" element={<ErrorPage/>}/>                    

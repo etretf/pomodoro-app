@@ -8,7 +8,10 @@ export default function Root(props){
     const [currentTab, setCurrentTab] = useState(useLocation().pathname);
     const [currentTheme, setCurrentTheme] = useState(false);
 
-    props.handleSectionSwitch(currentTab);
+    useEffect(()=>{
+        props.handleSectionSwitch(currentTab);    
+    }, [currentTab]);    
+    
 
     const seconds = props.time % 60;
     const minutes = Math.floor(props.time / 60);
@@ -60,7 +63,7 @@ export default function Root(props){
             onClick={() => 
             {
                 switchTab("/study");
-                props.handleSectionSwitch('study');
+                props.handleSectionSwitch('/study');
             }}>
                 Study</Link>
             <Link 
@@ -70,7 +73,7 @@ export default function Root(props){
             onClick={() => 
             {
                 switchTab("/progress");
-                props.handleSectionSwitch('progress');
+                props.handleSectionSwitch('/progress');
             }}>
                 Progress</Link>
         </div> 
