@@ -16,6 +16,23 @@ function App() {
   const day = date.getDate();
   const fullDate = `${day}/${month}/${year}`;
 
+// for mobile tabs
+const [openTab, setOpenTab] = useState('timer');
+const [isMobile, setIsMobile] = useState(window.innerWidth <= 640);
+
+const handleWindowResize = () => {
+    setIsMobile(window.innerWidth <= 640);
+}
+
+useEffect(() => {
+    window.addEventListener('resize', handleWindowResize);
+    return () => {
+        window.removeEventListener('resize', handleWindowResize);
+    }
+}, [])
+
+console.log(isMobile)
+
 const [data, setData] = useState({key:'value'});
 const [chat, setChat] = useState([{1:2},{3:4}]);
 //time in seconds
@@ -194,6 +211,11 @@ function handleEnd(){
   setIsCounting(true);
 }
 
+//function for handling study page tab switches
+
+function handleStudyTabSwitch(tabName){
+    setOpenTab(tabName);
+}
 
   return (
     <>
@@ -201,9 +223,10 @@ function handleEnd(){
             <Routes>
                     <Route
                         path='/'
-                        element={<Navbar time={time} sessionType={sessionType} isCounting={isCounting} />}
+                        element={<Navbar openTab={openTab} handleTab={handleStudyTabSwitch}  time={time} sessionType={sessionType} isCounting={isCounting} />}
                     >
-                        <Route index element={<Home 
+                        <Route index element={<Home
+                            openTab={openTab} 
                             chat={chat} 
                             setChat={setChat}
                             numSessions={progressData[currentIndex].count}
@@ -216,7 +239,8 @@ function handleEnd(){
                             handleEnd={handleEnd}
                         />}
                         />
-                        <Route path='study' element={<Home 
+                        <Route path='study' element={<Home
+                            openTab={openTab}  
                             chat={chat} 
                             setChat={setChat}
                             numSessions={progressData[currentIndex].count}

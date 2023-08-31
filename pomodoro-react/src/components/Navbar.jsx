@@ -48,9 +48,6 @@ export default function Root(props){
             }
 
         </div>
-        <div className="navbar-center">
-            <a className="normal-case text-xl">Our logo</a>
-        </div>
         <div className="navbar-end join">
             <Link 
             to="/study" 
@@ -69,20 +66,20 @@ export default function Root(props){
         <Outlet/>
         <footer className="mobile-nav-bottom sm:hidden">
             <div className="w-full py-2 flex justify-center gap-8">
-                <div className="min-h-fit">
-                    <button className="btn btn-ghost">
+                <div>
+                    <button onClick={()=>props.handleTab('chat')} className={`btn btn-ghost btn-md rounded-full ${props.openTab === 'chat' ? 'bg-base-200' : ''}`}>
                         <ChatBubbleOvalLeftIcon/>
                         Chat
                     </button>
                 </div>
                 <div>
-                    <button className="btn btn-ghost">
+                    <button onClick={()=>props.handleTab('timer')} className={`btn btn-ghost btn-md rounded-full ${props.openTab === 'timer' ? 'bg-base-200' : ''}`}>
                         <ClockIcon/>
                         Timer
                     </button>
                 </div>
                 <div>
-                    <button className="btn btn-ghost">
+                    <button onClick={()=>props.handleTab('todo')} className={`btn btn-ghost btn-md rounded-full ${props.openTab === 'todo' ? 'bg-base-200' : ''}`}>
                         <ClipboardDocumentCheckIcon/>
                         To-do
                     </button>

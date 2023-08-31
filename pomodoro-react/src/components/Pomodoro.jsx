@@ -7,7 +7,7 @@ export default function Pomodoro(props){
 
 
   return(
-      <div className={`full-w-component relative justify-center overflow-auto`}>
+      <div className={`home-component relative justify-center overflow-auto ${props.openTab !== 'timer' ? 'hidden' : 'flex flex-col' }`}>
 
       <div className='btn no-animation pointer-events-none bg-base-300 flex gap-7 m-10 p-2 join'>
           <p className={ props.sessionType === 'short break' || props.sessionType === 'long break' ? "text-primary text-xl join-item" : "text-neutral text-xl join-item"}>

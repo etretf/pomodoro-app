@@ -4,7 +4,7 @@ import { PlusIcon } from '@heroicons/react/24/solid'
 import {useState, useEffect} from "react"
 import { nanoid } from 'nanoid'
 
-export default function ToDo()
+export default function ToDo(props)
 {
     const [toDoItems, setToDoItems] = useState(
         JSON.parse(localStorage.getItem("toDoItems")) || []
@@ -143,7 +143,7 @@ export default function ToDo()
 
 
     return(
-        <div className="full-w-component half-w-component to-do-component max-container todo">
+        <div className={`home-component to-do-component max-container ${props.openTab !== 'todo' ? 'hidden' : 'flex flex-col col-span-1'}`}>
             <div className="x-flex w-full">
                 <h2>My Tasks</h2>
                 <button 

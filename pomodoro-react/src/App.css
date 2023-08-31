@@ -37,6 +37,10 @@ p {
     @apply rounded-lg col-span-2 p-4 bg-primary flex flex-col items-center bg-base-200 min-h-full max-h-fit;
 }
 
+.home-component {
+    @apply rounded-lg col-span-2 p-4 bg-primary items-center bg-base-200 min-h-full max-h-fit ;
+}
+
 .half-w-component {
     @apply col-span-1;
 }
@@ -137,15 +141,15 @@ p {
     max-height: 500px;
 }
 
-.todo, .chatbot {
+/* .todo, .chatbot {
     @apply hidden sm:block;
-}
+} */
 
 @media (max-width: 639px){
-    .pomodoro{
-        grid-template-rows: 2fr 0fr;
-        min-height: 80%;
-    }
+ .pomodoro{
+    min-height: 80%;
+    grid-template-rows: 2fr 0fr;
+ }
 }
 
 

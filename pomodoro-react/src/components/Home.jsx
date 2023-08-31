@@ -20,6 +20,7 @@ export default function Home(props) {
     return (
       <div className={`grid-container container ${timerFullScreen? "span-2": ""} pomodoro`}>
         <Pomodoro
+          openTab={props.openTab}
           handleChange={togglePomodoro} 
           handlePlayToggle={props.handlePlayToggle}
           handleBeginning={props.handleBeginning}
@@ -32,8 +33,8 @@ export default function Home(props) {
           numSessions={props.numSessions}
           time={props.time}
           />
-        {!timerFullScreen && <ToDo layout={timerFullScreen}/>}
-        {!timerFullScreen && <ChatBot layout={timerFullScreen} chat={props.chat} setChat={props.setChat}/>}
+        {!timerFullScreen && <ToDo layout={timerFullScreen} openTab={props.openTab}/>}
+        {!timerFullScreen && <ChatBot layout={timerFullScreen} openTab={props.openTab} chat={props.chat} setChat={props.setChat}/>}
       </div>
     );
   }
