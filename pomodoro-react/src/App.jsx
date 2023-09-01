@@ -9,6 +9,7 @@ import Navbar from './components/Navbar';
 import Styleguide from './components/Styleguide';
 import { nanoid } from 'nanoid';
 import { useLocation } from 'react-router-dom';
+import sfx from './assets/finish.mp3';
 
 function App() {
 
@@ -104,65 +105,6 @@ useEffect(() => {
     }
 }, [])
 
-
-
-// useEffect(() => {
-//     const date = new Date();
-//     const year = date.getFullYear();
-//     const month = date.getMonth();
-//     const day = date.getDate();
-//     const fullDate = `${day}/${month}/${year}`;
-//     let currentData = [];
-//     if(localStorage.getItem('sessionData')){
-//         currentData = JSON.parse(localStorage.getItem('progressData'));
-//         console.log(currentData);
-//         // const idx = currentData.findIndex(i => i.fullDate === fullDate);
-//         // setNumSessions(currentData[idx].numSessions);
-//     }
-// }, []);
-
-/*
-useEffect(() => {
-    console.log('Number of sessions change');
-    const date = new Date();
-    const year = date.getFullYear();
-    const month = date.getMonth();
-    const day = date.getDate();
-    const fullDate = `${day}/${month}/${year}`;
-    
-    let userSessions = [...progressData];
-    // const dataEntry = {year:year, month:month, day:day, numSessions:numSessions}
-    const dataEntry = {fullDate: fullDate, date: date, numSessions:numSessions}
-
-    //check in existing array for object with key = date or fullDate
-    //find index for that object 
-    //update the count
-
-    //if it does not exist in the array, then add to a duplicate array of progress data
-    //then set localStorage with the new array
-
-    const toUpdateIdx = userSessions.findIndex(i => i.fullDate === fullDate);
-    console.log(toUpdateIdx);
-    if(toUpdateIdx === -1){
-        userSessions.push(dataEntry);
-    }
-    else if(toUpdateIdx !== -1){
-        userSessions[toUpdateIdx].date = date;
-        if(numSessions){
-            userSessions[toUpdateIdx].numSessions = numSessions;    
-        }
-        else {
-            userSessions[toUpdateIdx].numSessions = 0;
-            setNumSessions(0);
-        }
-    }
-    localStorage.setItem("sessionData", JSON.stringify(userSessions))
-    console.log(userSessions);
-}, [numSessions])*/
-
-
-
-
 useEffect(() => {
     // console.log("update")
     localStorage.setItem("sessionData", JSON.stringify(progressData))
@@ -174,7 +116,7 @@ useEffect(() => {
       setSessionType('long break');
     }
     else if(progressData[currentIndex].count % 2 === 0){
-      setTime(studyTime);
+      setTime(testTime);
       setSessionType('study');
     }
     else{
@@ -190,6 +132,7 @@ useEffect(() => {
       const newArr = progressData;
       newArr[currentIndex].count = newArr[currentIndex].count + 1;
       setProgressData(newArr);
+      playSFX();
     }
     if(isCounting && time > -1){
       const increment = setInterval(handleDecrement, 1000);
@@ -200,6 +143,13 @@ useEffect(() => {
     // console.log(sessionType);
     // console.log(numSessions);
   }, [isCounting, time]);
+
+//play a sound effect when completing a session
+const playSFX = () => {
+    let audio = new Audio(sfx);
+    audio.play();
+}
+
 
 //toggle the playing state
 const handlePlayToggle = () =>{

@@ -1,8 +1,14 @@
-# React + Vite
+# Pomodoro Study App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+Created by Amina Al-Helali and Emma Souannhaphanh.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This application is a Pomodoro and to-do web application that helps students stay on track with their studying or homework. 
+
+The main features of the application include: a Pomodoro timer, a to-do task list, an OpenAI ChatGPT-powered Pomodoro study buddy chatbot, and a progress page for tracking your completed tasks and your study sessions over the last week.
+
+This application was built using React + Vite, TailwindCSS, DaisyUI, React Chart.js, and the OpenAI API.
+
+SFX credits: 
+
+Sound Effect by <a href="https://pixabay.com/users/universfield-28281460/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=142971">UNIVERSFIELD</a> from <a href="https://pixabay.com/sound-effects//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=142971">Pixabay</a>
