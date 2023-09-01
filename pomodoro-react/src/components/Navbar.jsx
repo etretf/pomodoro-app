@@ -9,6 +9,11 @@ export default function Root(props){
     const [currentTheme, setCurrentTheme] = useState(false);
 
     useEffect(()=>{
+        console.log(currentTab);
+        if(currentTab === '/'){
+            setCurrentTab('/study');
+            console.log(currentTab)
+        }
         props.handleSectionSwitch(currentTab);    
     }, [currentTab]);    
     
