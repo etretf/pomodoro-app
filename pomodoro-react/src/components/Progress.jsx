@@ -160,7 +160,7 @@ export default function Progress(props){
     }
 
     return(
-        <div className="h-full container flex flex-col gap-4 min-h-fit p-4">
+        <div className="h-full container flex flex-col gap-4 min-h-fit">
             <div className={`progress-chart rounded-lg col-span-2 p-4 flex flex-col items-center bg-base-200 ${props.openTab === 'studyprogress' || props.openTab === 'all' ? '' : 'hidden'}`}>
                 <h2 className="p-5">My progress</h2>
                 { props.openTab === 'all' && 

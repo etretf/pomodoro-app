@@ -9,7 +9,8 @@ import Navbar from './components/Navbar';
 import Styleguide from './components/Styleguide';
 import { nanoid } from 'nanoid';
 import { useLocation } from 'react-router-dom';
-import sfx from './assets/finish.mp3';
+import finish from './assets/finish.mp3';
+import click from './assets/click.mp3';
 
 function App() {
 
@@ -116,7 +117,7 @@ useEffect(() => {
       setSessionType('long break');
     }
     else if(progressData[currentIndex].count % 2 === 0){
-      setTime(testTime);
+      setTime(studyTime);
       setSessionType('study');
     }
     else{
@@ -132,7 +133,7 @@ useEffect(() => {
       const newArr = progressData;
       newArr[currentIndex].count = newArr[currentIndex].count + 1;
       setProgressData(newArr);
-      playSFX();
+      playSFX(finish);
     }
     if(isCounting && time > -1){
       const increment = setInterval(handleDecrement, 1000);
@@ -144,8 +145,8 @@ useEffect(() => {
     // console.log(numSessions);
   }, [isCounting, time]);
 
-//play a sound effect when completing a session
-const playSFX = () => {
+//play a sound effect 
+const playSFX = (sfx) => {
     let audio = new Audio(sfx);
     audio.play();
 }
@@ -154,13 +155,12 @@ const playSFX = () => {
 //toggle the playing state
 const handlePlayToggle = () =>{
   isCounting ? setIsCounting(false) : setIsCounting(true);
-  // console.log(isCounting);
+  playSFX(click);
 }
 
 //function to decrement the time
 function handleDecrement(){
     setTime(time => time - 1);
-    // console.log(time);      
 }
 
 //function resets current timer to the beginning
@@ -176,12 +176,14 @@ function handleBeginning(){
       setTime(longBreakTime);
       break;
   }
+  playSFX(click);
 }
 
 //function sets current timer to the end
 function handleEnd(){
   setTime(0);
   setIsCounting(true);
+  playSFX(click);
 }
 
 //function for handling tab switches
