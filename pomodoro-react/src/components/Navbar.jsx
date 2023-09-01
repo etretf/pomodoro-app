@@ -29,8 +29,6 @@ export default function Root(props){
         setCurrentTheme(event.target.checked)
     }
 
-    console.log(props.currentSection);
-
     return(
         <>
         <nav className="navbar bg-base-100 container">

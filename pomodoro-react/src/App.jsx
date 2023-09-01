@@ -37,25 +37,23 @@ useEffect(() => {
     }
 }, [])
 
-useEffect(() => {
-    if(!isMobile){
-        setOpenTab('all');
-    }
-    if(isMobile){
-        // default tab is timer
-    }
-}, [isMobile])
 
 useEffect(() => {
-    if(currentSection === '/progress'){
+    if(currentSection === '/progress' && isMobile){
         setOpenTab('studyprogress');
     }
-    else if(currentSection === '/study') {
+    else if(currentSection === '/progress' && !isMobile){
+        setOpenTab('all');
+    }
+    else if(currentSection === '/study' && isMobile){
         setOpenTab('timer');
     }
-}, [currentSection]);
+    else if(currentSection === '/study' && !isMobile){
+        setOpenTab('all');
+    }
+}, [currentSection, isMobile]);
 
-
+console.log(openTab)
 
 
 
@@ -247,8 +245,6 @@ function handleStudyTabSwitch(tabName){
 function handleSectionSwitch(sectionName){
     setCurrentSection(sectionName);
 }
-
-console.log(openTab);
 
   return (
     <>
