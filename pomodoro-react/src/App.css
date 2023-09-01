@@ -150,8 +150,9 @@ p {
     min-height: 80%;
     grid-template-rows: 2fr 0fr;
  }
- /* .progress-chart, .tasks{
- } */
+ .progress-chart, .tasks{
+    min-height: 100%;
+ }
 }
 
 

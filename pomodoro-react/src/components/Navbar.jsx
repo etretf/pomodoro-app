@@ -9,6 +9,11 @@ export default function Root(props){
     const [currentTheme, setCurrentTheme] = useState(false);
 
     useEffect(()=>{
+        console.log(currentTab);
+        if(currentTab === '/'){
+            setCurrentTab('/study');
+            console.log(currentTab)
+        }
         props.handleSectionSwitch(currentTab);    
     }, [currentTab]);    
     
@@ -64,7 +69,7 @@ export default function Root(props){
                 props.handleSectionSwitch('/study');
             }}>
                 Study
-                { props.openTab !== 'all' && props.isCounting && currentTab === '/progress' &&
+                { props.openTab !== 'all' && props.isCounting && props.openTab !== 'timer' &&
                 <span>
                     {minutes}:{ seconds < 10 ? "0" + seconds : seconds}
                 </span>                 
