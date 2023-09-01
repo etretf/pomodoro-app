@@ -142,7 +142,8 @@ export default function ToDo(props)
         submitItem={handleSubmit} {...item}
         />
         :
-        <ToDoItem 
+        <ToDoItem
+        openTab={props.openTab} 
         key={item.id} 
         {...item} 
         delete={() => deleteItem(item.id)} 
@@ -158,14 +159,27 @@ export default function ToDo(props)
         <div className={`home-component to-do-component max-container  ${props.openTab !== 'todo' && props.openTab !== 'all' ? 'hidden' : ''} ${props.openTab === 'all' && 'flex flex-col half-w-component'}`}>
             <div className="x-flex w-full">
                 <h2>My Tasks</h2>
+                {props.openTab === 'all' && 
+                    <button 
+                    className="btn btn-outline btn-sm" 
+                    onClick={displayTemplate}
+                    disabled = {showTemplate}>
+                    <PlusIcon className="h-4 w-4 text-blue-500" /> 
+                    Add task</button>                
+                }
+
+            </div>
+            {props.openTab === 'todo' && 
                 <button 
-                className="btn btn-outline btn-sm" 
+                className="btn btn-outline btn-lg my-5 w-full text-lg" 
                 onClick={displayTemplate}
                 disabled = {showTemplate}>
-                <PlusIcon className="h-4 w-4 text-blue-500" /> 
-                Add task</button>
-            </div>
-            {showTemplate && !editingItem && <ToDoItemTemplate cancelItem={hideTemplate} submitItem={handleSubmit}/>}
+                <PlusIcon className="h-6 w-6 text-blue-500" />                     
+                    Add task
+                </button>             
+            
+            }
+            {showTemplate && !editingItem && <ToDoItemTemplate openTab={props.openTab} cancelItem={hideTemplate} submitItem={handleSubmit}/>}
             {itemsDisplay}
         </div>
     )

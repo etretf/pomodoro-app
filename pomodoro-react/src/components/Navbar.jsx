@@ -1,7 +1,7 @@
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { current } from "immer";
-import { BookmarkIcon, ChartBarIcon, ChatBubbleOvalLeftIcon, ClipboardDocumentCheckIcon, ClockIcon, DocumentCheckIcon } from "@heroicons/react/24/solid";
+import { BookOpenIcon, BookmarkIcon, ChartBarIcon, ChatBubbleOvalLeftIcon, ClipboardDocumentCheckIcon, ClockIcon, DocumentCheckIcon, StopCircleIcon } from "@heroicons/react/24/solid";
 
 
 export default function Root(props){
@@ -45,7 +45,7 @@ export default function Root(props){
             </label>
             {/* mini-timer */}
             {
-                currentTab === '/progress' && props.isCounting &&
+                currentTab === '/progress' && props.isCounting && props.openTab === 'all' &&
                 <div className="mini-timer join ml-5">
                     <div className="join-item text-base btn no-animation pointer-events-none">{props.sessionType === 'study' ? "Study" : "Break"}</div>
                     <div className="join-item text-base btn no-animation pointer-events-none w-20">{minutes}:{ seconds < 10 ? "0" + seconds : seconds}</div>
@@ -63,7 +63,14 @@ export default function Root(props){
                 switchTab("/study");
                 props.handleSectionSwitch('/study');
             }}>
-                Study</Link>
+                Study
+                { props.openTab !== 'all' && props.isCounting && currentTab === '/progress' &&
+                <span>
+                    {minutes}:{ seconds < 10 ? "0" + seconds : seconds}
+                </span>                 
+                }
+   
+            </Link>
             <Link 
             to="/progress" 
             className={`btn join-item btn-sm sm:btn-xs btn-ghost ${currentTab === "/progress" && "btn-active"}`}
@@ -78,8 +85,8 @@ export default function Root(props){
         </nav>
         <Outlet/>
         { props.currentSection === '/study' &&
-        <footer className="study-footer-nav sm:hidden">
-            <div className="w-full py-2 flex justify-center gap-8">
+        <footer className="footer-nav sm:hidden sticky bottom-0">
+            <div className="w-full py-2 flex justify-center gap-8 mb-5">
                 <div>
                     <button onClick={()=>props.handleTab('chat')} className={`btn btn-ghost btn-md rounded-full ${props.openTab === 'chat' ? 'bg-base-200' : ''}`}>
                         <ChatBubbleOvalLeftIcon/>
@@ -102,11 +109,11 @@ export default function Root(props){
         </footer>        
         }
         { props.currentSection === '/progress' && 
-        <footer className="progress-footer-nav">
-        <div className="w-full py-2 flex justify-center px-10">
+        <footer className="footer-nav sm:hidden sticky bottom-0">
+        <div className="w-full py-2 flex justify-center px-10 mb-10">
                 <div>
                     <button onClick={()=>props.handleTab('studyprogress')} className={`btn btn-ghost btn-md rounded-full mb-2 ${props.openTab === 'studyprogress' ? 'bg-base-200' : ''}`}>
-                        <ChartBarIcon className="w-10 block pb-2"/>
+                        <ChartBarIcon className="w-10 block pb-2 min-h-fit"/>
                         Study Progress
                     </button>
                 </div>

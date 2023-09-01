@@ -2,12 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
+html, body {
     @apply h-full;
 }
 
 #root {
-    @apply flex flex-col;
+    @apply flex flex-col min-h-full;
 }
 
 h2 {
@@ -27,7 +27,7 @@ p {
 }
 
 .grid-container {
-    @apply grid grid-rows-2 grid-cols-2 container gap-7 py-4 ;
+    @apply grid grid-rows-2 grid-cols-2 container gap-7 py-4;
     grid-template-rows: 1fr 1fr;
     transition: grid-template-rows 0.25s;
     min-height: 90%;
@@ -150,9 +150,11 @@ p {
     min-height: 80%;
     grid-template-rows: 2fr 0fr;
  }
+ /* .progress-chart, .tasks{
+ } */
 }
 
 
-.mobile-nav-bottom { 
-
-}
+/* .footer-nav {
+    @apply bg-base-200;
+} */

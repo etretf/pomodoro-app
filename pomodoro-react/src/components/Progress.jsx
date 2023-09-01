@@ -194,7 +194,7 @@ export default function Progress(props){
                     </div>
                     </div> */}
             { console.log(props.openTab)}
-            <div className={`rounded-lg col-span-2 p-4 flex flex-col items-center bg-base-200 ${props.openTab === 'studyprogress' || props.openTab === 'all' ? '' : 'hidden'}`}>
+            <div className={`progress-chart rounded-lg col-span-2 p-4 flex flex-col items-center bg-base-200 ${props.openTab === 'studyprogress' || props.openTab === 'all' ? '' : 'hidden'}`}>
                 <h2 className="p-5">My progress</h2>
                 <div className="graph-div">
                     <Bar options={options} data={data}/>
