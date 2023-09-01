@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import CompletedTask from "./CompletedTask.jsx"
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -20,6 +21,10 @@ Title,
 Tooltip,
 Legend
 );
+
+const monthNames = ["Jan", "Feb", "March", "April", "May", "June",
+  "July", "Aug", "Sept", "Oct", "Nov", "Dec"
+];
 
 
 
@@ -120,8 +125,9 @@ export default function Progress(props){
 
 
     //const labels = getWeekdaysOnly();
+    //getting the date labels for the graph
     const labels = weeklyArray.map((item, index) => {
-        const shortDate = item.fullDate.slice(0,-5);
+        const shortDate = monthNames[item.dateToConvert.getMonth()] + " " + item.dateToConvert.getDate();
         return(index == 6 ? "Today" :  shortDate)
     });
 
@@ -196,31 +202,10 @@ export default function Progress(props){
                 </div>
 
             </div>
-            <div className={`rounded-lg col-span-2 p-4 items-center bg-base-200 to-do-component ${props.openTab === 'tasks' || props.openTab ==='all' ? 'flex flex-col' : 'hidden'}`}>
+            <div className={`rounded-lg col-span-2 p-4 items-center bg-base-200 to-do-component max-container ${props.openTab === 'tasks' || props.openTab ==='all' ? 'flex flex-col' : 'hidden'}`}>
                 <h2 className="p-5">Completed Tasks</h2>
-                {toDoItems.map((task, index) => <Task key={index} {...task}/>)}
+                {toDoItems.map((task, index) => <CompletedTask key={index} {...task}/>)}
             </div> 
-        </div>
-    )
-}
-
-
-
-
-
-const studySessionData = [0,1,3,4,4,2,0];
-
-
-function Task(props){
-    return(
-        <div className='task-item '>
-            <div className='task-item-1'>
-                <h3 className="m-0">{props.title}</h3>
-                <p>{props.desc}</p>
-            </div>
-            <p>
-                Completed at 19:23, October 10, 2022.
-            </p>
         </div>
     )
 }

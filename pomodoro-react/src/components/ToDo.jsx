@@ -4,6 +4,10 @@ import { PlusIcon } from '@heroicons/react/24/solid'
 import {useState, useEffect} from "react"
 import { nanoid } from 'nanoid'
 
+const monthNames = ["Jan", "Feb", "March", "April", "May", "June",
+  "July", "Aug", "Sept", "Oct", "Nov", "Dec"
+];
+
 export default function ToDo(props)
 {
     const [toDoItems, setToDoItems] = useState(
@@ -103,7 +107,8 @@ export default function ToDo(props)
                 desc: desc,
                 complete: false,
                 template: false,
-                display: true
+                display: true,
+                timestamp: ""
             }
         )
     }
@@ -117,7 +122,14 @@ export default function ToDo(props)
 
     function toggleTaskComplete(id)
     {
-        setToDoItems(prevValue => prevValue.map(item => item.id === id? {...item, complete: !item.complete} : {...item}))
+        const today = new Date()
+        const hourFormat = today.getHours() > 11 ? " pm" : " am"
+        const hours = today.getHours() % 12;
+        const date = hours + ":" + today.getMinutes() + hourFormat + ", " + monthNames[today.getMonth()] + " " + today.getDate() + ", " + today.getFullYear();
+        setToDoItems(prevValue => prevValue.map(item => item.id === id? 
+            {...item, complete: !item.complete, timestamp: date} 
+            : 
+            {...item}))
     }
 
     const items = toDoItems.filter(value => value.display)
@@ -143,7 +155,7 @@ export default function ToDo(props)
 
 
     return(
-        <div className={`home-component to-do-component max-container ${props.openTab !== 'todo' && props.openTab !== 'all' ? 'hidden' : ''} ${props.openTab === 'all' && 'flex flex-col half-w-component'}`}>
+        <div className={`home-component to-do-component max-container  ${props.openTab !== 'todo' && props.openTab !== 'all' ? 'hidden' : ''} ${props.openTab === 'all' && 'flex flex-col half-w-component'}`}>
             <div className="x-flex w-full">
                 <h2>My Tasks</h2>
                 <button 
