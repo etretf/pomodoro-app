@@ -47,7 +47,7 @@ export default function Progress(props){
         JSON.parse(localStorage.getItem("sessionData")) || []
     )
 
-    console.log("progress",weeklyArray)
+    // console.log("progress",weeklyArray)
 
     //function will generate an object for each dat in the past 7 days
     function createDateString(daysToSubtract)
@@ -67,10 +67,6 @@ export default function Progress(props){
             let toDisplay = toDoItems.filter(item => item.complete);
             setToDoItems(toDisplay);
         }
-        if(progressData)
-        {
-            formatSessionData(progressData);
-        }
 
         //updating date count of the relevant dates in the past 7 days 
         setWeeklyArray(prevValue => (
@@ -82,11 +78,6 @@ export default function Progress(props){
 
 
     }, [])
-
-
-    function formatSessionData(sessionData){
-        console.log(sessionData);
-    }
 
     // function gets the date for a specific number of days in the past
     function getDate(daysInPast){
@@ -153,6 +144,7 @@ export default function Progress(props){
     };    
 
     const mobileOptions = {
+        maintainAspectRatio: false,
         indexAxis : 'y',
         elements: {
             bar: {
@@ -162,45 +154,25 @@ export default function Progress(props){
         responsive: true,
         plugins: {
             legend: {
-                position: 'right'
+                position: 'top'
             }
         }
     }
 
     return(
         <div className="h-full container flex flex-col gap-4 min-h-fit p-4">
-            {/*
-            <div className="rounded-lg col-span-2 flex flex-col items-center bg-base-200 p-5 progress-data">
-                <h2 className="p-5">My progress</h2>
-                    <div className="grid grid-cols-7 gap-4 p-10 w-full mt-auto">
-                        {daysOfTheWeek.map(day => {
-                            return(
-                                <div key={day.weekday}>
-                                    <div className="flex justify-center pb-3">
-                                        <div className="indicator">
-                                            <span className="indicator-item badge badge-secondary p-4">
-                                                <h3 className="font-bold">
-                                                  {day.numSessions}  
-                                                </h3>
-        
-                                            </span>
-                                            <ProgressBar numSessions={day.numSessions}/>                                      
-                                        </div>
-                                    </div>
-                                    <h3 className="text-center">{day.weekday}</h3>                                
-                                </div>
-                            )
-                        })}
-                    </div>
-                    </div> */}
-            { console.log(props.openTab)}
             <div className={`progress-chart rounded-lg col-span-2 p-4 flex flex-col items-center bg-base-200 ${props.openTab === 'studyprogress' || props.openTab === 'all' ? '' : 'hidden'}`}>
                 <h2 className="p-5">My progress</h2>
-                <div className="graph-div">
-                    <Bar options={options} data={data}/>
-                    {/* <Bar options={mobileOptions} data={data}/> */}
-                </div>
-
+                { props.openTab === 'all' && 
+                    <div className="graph-div">
+                        <Bar options={options} data={data}/>
+                    </div>                
+                }
+                { props.openTab === 'studyprogress' && 
+                    <div className="h-full w-full p-5">
+                        <Bar options={mobileOptions} data={data}/>
+                    </div>
+                }
             </div>
             <div className={`tasks rounded-lg col-span-2 p-4 items-center bg-base-200 to-do-component max-container ${props.openTab === 'tasks' || props.openTab ==='all' ? 'flex flex-col' : 'hidden'}`}>
                 <h2 className="p-5">Completed Tasks</h2>

@@ -54,8 +54,6 @@ useEffect(() => {
     }
 }, [currentSection, isMobile]);
 
-console.log(openTab)
-
 
 
 const [data, setData] = useState({key:'value'});
