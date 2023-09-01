@@ -69,11 +69,10 @@ export default function ChatBot(props)
         chatItem={item} />
     ))
 
-    // currentChat.reverse()
+    currentChat.reverse()
 
     return(
         <div className={`home-component max-container flex flex-col ${props.openTab !== 'chat' && props.openTab !== 'all' ? 'hidden' : ''} ${props.openTab === 'all' && 'flex flex-col half-w-component'}`}>
-            {props.openTab === 'all' &&
                 <>
                     <form className="x-flex w-full" onSubmit={event => handleSubmit(event, chatQuestion)} onFocus={event => handleFocus(event)}> 
                         <input 
@@ -91,32 +90,12 @@ export default function ChatBot(props)
                     disabled={!props.chat.length}
                     >Clear Chat</button>                    
                 </> 
-        
-            }
-            <div className="max-container">
-                <ChatBubble chatItem={{question:"", content: "Hi! I'm Pomodoro, a tomato!"}}/>
+                    <div className="max-container">
                 {generatingText && <ChatBubble chatItem={{question: questionToDisplay, content: "Typing..."}}/>}
-                {currentChat}
-            </div>
-            {props.openTab === 'chat' && 
-                <div className="w-full mt-auto">
-                    <button 
-                    className={`btn btn-ghost mr-auto my-3 btn-sm sm:btn-xs`} 
-                    onClick={clearChat}
-                    disabled={!props.chat.length}
-                    >Clear Chat</button>  
-                    <form className="x-flex w-full" onSubmit={event => handleSubmit(event, chatQuestion)} onFocus={event => handleFocus(event)}> 
-                        <input 
-                        type="text" 
-                        placeholder={chatError ? "Please enter a question." : "What would you like to know?"}
-                        className={`${chatError ? 'input input-error w-full max-w-x' : 'input input-primary w-full max-w-x'} btn-md sm:btn-sm `} 
-                        value={chatQuestion}
-                        onChange={handleChange}/>
-                        <button className={`btn btn-primary btn-md sm:btn-sm`}>Go</button>
-                    </form>                 
-                </div>
-            }
-            
+                {currentChat}                
+                <ChatBubble chatItem={{question:"", content: "Hi! I'm Pomodoro, a tomato!"}}/>
+
+            </div>            
         </div>
     )
 }

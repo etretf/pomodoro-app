@@ -69,7 +69,7 @@ export default function Root(props){
                 props.handleSectionSwitch('/study');
             }}>
                 Study
-                { props.openTab !== 'all' && props.isCounting && currentTab === '/progress' &&
+                { props.openTab !== 'all' && props.isCounting && props.openTab !== 'timer' &&
                 <span>
                     {minutes}:{ seconds < 10 ? "0" + seconds : seconds}
                 </span>                 
