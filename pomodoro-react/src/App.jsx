@@ -3,6 +3,7 @@ import './App.css';
 import {Route, Routes, BrowserRouter, Outlet} from 'react-router-dom';
 import Progress from './components/Progress';
 import Home from './components/Home';
+import RedoToast from './components/RedoToast';
 import ErrorPage from './components/ErrorPage';
 import Navbar from './components/Navbar';
 import Styleguide from './components/Styleguide';
@@ -248,6 +249,10 @@ function handleSectionSwitch(sectionName){
 
   return (
     <>
+    <div className="toast toast-start w-80">
+      <RedoToast />
+      <RedoToast />
+    </div>
     <BrowserRouter>
             <Routes>
                     <Route

@@ -3,6 +3,7 @@ import ToDoItemTemplate from "./ToDoItemTemplate"
 import { PlusIcon } from '@heroicons/react/24/solid'
 import {useState, useEffect} from "react"
 import { nanoid } from 'nanoid'
+import RedoToast from './RedoToast';
 
 const monthNames = ["Jan", "Feb", "March", "April", "May", "June",
   "July", "Aug", "Sept", "Oct", "Nov", "Dec"
@@ -181,6 +182,8 @@ export default function ToDo(props)
             }
             {showTemplate && !editingItem && <ToDoItemTemplate openTab={props.openTab} cancelItem={hideTemplate} submitItem={handleSubmit}/>}
             {itemsDisplay}
+            
+            
         </div>
     )
 }
