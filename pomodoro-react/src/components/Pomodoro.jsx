@@ -9,7 +9,7 @@ export default function Pomodoro(props){
   return(
       <div className={`home-component relative justify-center overflow-auto flex flex-col ${props.openTab === 'timer' || props.openTab === 'all' ? '' : 'hidden' }`}>
 
-      <div className='btn no-animation pointer-events-none bg-base-300 flex gap-7 m-10 p-2 join'>
+      <div className='btn no-animation pointer-events-none bg-base-300 flex gap-7 m-5 p-2 join'>
           <p className={ props.sessionType === 'short break' || props.sessionType === 'long break' ? "text-primary text-xl join-item" : "text-neutral text-xl join-item"}>
             Break: {Math.floor(props.numSessions / 2)} 
           </p>
@@ -17,15 +17,15 @@ export default function Pomodoro(props){
             Study: {Math.ceil(props.numSessions / 2)}
           </p>
       </div>
-      <div className="grid grid-flow-col gap-5 text-center auto-cols-max mb-3">
+      <div className="grid grid-flow-col gap-5 text-center auto-cols-max p-3">
         <div className="flex flex-col">
-          <span className="countdown font-mono text-9xl">
+          <span className="countdown font-mono ">
             <span style={{"--value":minutes}}></span>
           </span>
           min
         </div> 
         <div className="flex flex-col">
-          <span className="countdown font-mono text-9xl">
+          <span className="countdown font-mono ">
             {/* <span style={{"--value":10}}></span> */}
             <span style={{"--value": seconds}}></span>
           </span>

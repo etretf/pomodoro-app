@@ -68,10 +68,7 @@ const [toast, setToast] = useState([{title:"bob", id: nanoid()}]);
 const studyTime = 1500; //25 minutes
 const breakTime = 300; // 5minutes
 const longBreakTime = 900; //15 minutes
-const testTime = 5;//5 seconds, using for quick testing, not actual
-const breakTest = 3;
 
-// console.log(chat);`
 
 
 //const [numSessions, setNumSessions] = useState();
@@ -83,7 +80,6 @@ const [progressData, setProgressData] = useState(() => {
       {
         const arrayToReturn = JSON.parse(localStorage.getItem("sessionData"))
         const dateExists = arrayToReturn.find(item => item.fullDate === fullDate)
-        // console.log("hello",dateExists)
         return((dateExists) ? [...arrayToReturn] : [...arrayToReturn, {fullDate: fullDate, date: date, count: 0}] )
       }
       else {
@@ -95,9 +91,6 @@ const [progressData, setProgressData] = useState(() => {
 //index of the today's date item in progressData
 
 const currentIndex = progressData.findIndex(item => item.fullDate === fullDate);
-// console.log(currentIndex)
-
-// console.log("Array", progressData)
 
 //limiting progressData to only contain the latest 7 entries
 
@@ -111,7 +104,6 @@ useEffect(() => {
 }, [])
 
 useEffect(() => {
-    // console.log("update")
     localStorage.setItem("sessionData", JSON.stringify(progressData))
 }, [progressData[currentIndex].count]);
 
@@ -128,7 +120,6 @@ useEffect(() => {
       setTime(breakTime);
       setSessionType('short break');
     }
-    // console.log(numSessions);
   }, [progressData[currentIndex].count]);
 
   useEffect(() => {
@@ -145,8 +136,6 @@ useEffect(() => {
         clearInterval(increment);
       }      
     }
-    // console.log(sessionType);
-    // console.log(numSessions);
   }, [isCounting, time]);
 
 //play a sound effect 
@@ -200,8 +189,6 @@ function handleStudyTabSwitch(tabName){
 function handleSectionSwitch(sectionName){
     setCurrentSection(sectionName);
 }
-
-
 
 
   return (

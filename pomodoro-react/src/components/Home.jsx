@@ -20,6 +20,7 @@ export default function Home(props) {
     return (
       <div className={`grid-container container ${timerFullScreen? "span-2": ""} pomodoro`}>
         <Pomodoro
+          fullScreen={timerFullScreen}
           openTab={props.openTab}
           handleChange={togglePomodoro} 
           handlePlayToggle={props.handlePlayToggle}

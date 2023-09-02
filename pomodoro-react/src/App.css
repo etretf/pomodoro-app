@@ -159,3 +159,16 @@ p {
 /* .footer-nav {
     @apply bg-base-200;
 } */
+
+@media (max-height: 769px){
+    .countdown{
+        @apply text-6xl;
+    }
+}
+
+@media (min-height: 770px){
+    .countdown {
+        @apply text-8xl;
+    }    
+}
+
