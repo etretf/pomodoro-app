@@ -5,6 +5,7 @@ import {useState, useEffect} from "react"
 import { nanoid } from 'nanoid'
 import RedoToast from './RedoToast';
 
+
 const monthNames = ["Jan", "Feb", "March", "April", "May", "June",
   "July", "Aug", "Sept", "Oct", "Nov", "Dec"
 ];
@@ -17,6 +18,9 @@ export default function ToDo(props)
     // console.log(toDoItems);
     const [showTemplate, setShowTemplate] = useState(false);
     const [editingItem, setEditingItem] = useState(false)
+    const [toast, setToast] = useState([])
+
+    console.log("my items", toDoItems )
 
     useEffect(() => {
         localStorage.setItem("toDoItems", JSON.stringify(toDoItems))
@@ -42,23 +46,24 @@ export default function ToDo(props)
         ))
     }
 
+
     function deleteItem(id)
-    {
-        
+    { 
         setToDoItems(prevValue => {
             const index = prevValue.findIndex(item => item.id === id)
             const newArr = [...prevValue]
-            if(prevValue[index].complete)
+            newArr[index].display = false;
+            setToast(prevValue => ([...prevValue, newArr[index]]))
+            /*if(prevValue[index].complete)
             {
-                newArr[index].display = false;
+                
             }
             else
             {
                 newArr.splice(index, 1)
-            } 
+            } */
             return(newArr);
         })
-        
     }
 
     
@@ -133,6 +138,48 @@ export default function ToDo(props)
             {...item}))
     }
 
+    //function will add toast item to array
+function addToast(toAdd)
+{
+  setToast(prevValue => ([...prevValue, toAdd]))
+}
+
+//function will delete toast 
+function deleteToast(id)
+{
+  console.log("done")
+  setToast(prevValue => {
+    
+    const array = [...prevValue];
+    const index = array.findIndex(i => i.id == id);
+    console.log(index, id)
+    index > -1 && array.splice(index, 1) 
+    console.log(array)
+    return (array)
+  })
+}
+
+//function will add the restored task 
+function restoreTask(item) 
+{
+  setToDoItems(prevValue => {
+    const newArr = [...prevValue]
+    const index = newArr.findIndex(i => i.id == item.id)
+    if(index > -1)
+        newArr[index].display = true;
+    return(newArr)
+  })
+  deleteToast(item.id)
+}
+
+const toastItems = toast.map(item => (
+<RedoToast 
+  key={item.id}
+  {...item} 
+  deleteToast={deleteToast}
+  restoreTask={() => restoreTask(item)}
+/>))
+
     const items = toDoItems.filter(value => value.display)
     // console.log(toDoItems)
     const itemsDisplay = items.map(item => (
@@ -158,6 +205,10 @@ export default function ToDo(props)
 
     return(
         <div className={`home-component to-do-component max-container  ${props.openTab !== 'todo' && props.openTab !== 'all' ? 'hidden' : ''} ${props.openTab === 'all' && 'flex flex-col half-w-component'}`}>
+           <div className="toast toast-start w-80">
+            {toastItems}
+            </div>
+           
             <div className="x-flex w-full">
                 <h2>My Tasks</h2>
                 {props.openTab === 'all' && 

@@ -33,7 +33,7 @@ export default function Home(props) {
           numSessions={props.numSessions}
           time={props.time}
           />
-        {!timerFullScreen && <ToDo layout={timerFullScreen} openTab={props.openTab}/>}
+        {!timerFullScreen && <ToDo layout={timerFullScreen} openTab={props.openTab} addToast={props.addToast}/>}
         {!timerFullScreen && <ChatBot layout={timerFullScreen} openTab={props.openTab} chat={props.chat} setChat={props.setChat}/>}
       </div>
     );

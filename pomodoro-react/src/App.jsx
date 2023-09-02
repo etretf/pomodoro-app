@@ -3,7 +3,6 @@ import './App.css';
 import {Route, Routes, BrowserRouter, Outlet} from 'react-router-dom';
 import Progress from './components/Progress';
 import Home from './components/Home';
-import RedoToast from './components/RedoToast';
 import ErrorPage from './components/ErrorPage';
 import Navbar from './components/Navbar';
 import Styleguide from './components/Styleguide';
@@ -25,6 +24,8 @@ const [openTab, setOpenTab] = useState('timer');
 const [currentSection, setCurrentSection] = useState();
 const [isMobile, setIsMobile] = useState(window.innerWidth <= 640);
 
+
+
 const handleWindowResize = () => {
     setIsMobile(window.innerWidth <= 640);
 }
@@ -34,11 +35,12 @@ const setLocation = (location) => {
 }
 
 useEffect(() => {
-    window.addEventListener('resize', handleWindowResize);
-    return () => {
-        window.removeEventListener('resize', handleWindowResize);
-    }
+  window.addEventListener('resize', handleWindowResize);
+  return () => {
+      window.removeEventListener('resize', handleWindowResize);
+  }
 }, [])
+
 
 
 useEffect(() => {
@@ -60,6 +62,8 @@ useEffect(() => {
 
 const [data, setData] = useState({key:'value'});
 const [chat, setChat] = useState([{1:2},{3:4}]);
+//for toast
+const [toast, setToast] = useState([{title:"bob", id: nanoid()}]);
 //time in seconds
 const studyTime = 1500; //25 minutes
 const breakTime = 300; // 5minutes
@@ -197,12 +201,11 @@ function handleSectionSwitch(sectionName){
     setCurrentSection(sectionName);
 }
 
+
+
+
   return (
     <>
-    <div className="toast toast-start w-80">
-      <RedoToast />
-      <RedoToast />
-    </div>
     <BrowserRouter>
             <Routes>
                     <Route
