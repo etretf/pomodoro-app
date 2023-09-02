@@ -91,6 +91,12 @@ export default function Root(props){
         <footer className="footer-nav sm:hidden sticky bottom-0">
             <div className="w-full py-2 flex justify-center gap-8 mb-5">
                 <div>
+                    <button onClick={()=>props.handleTab('todo')} className={`btn btn-ghost btn-md rounded-full ${props.openTab === 'todo' ? 'bg-base-200' : ''}`}>
+                        <ClipboardDocumentCheckIcon/>
+                        To-do
+                    </button>
+                </div>
+                <div>
                     <button onClick={()=>props.handleTab('chat')} className={`btn btn-ghost btn-md rounded-full ${props.openTab === 'chat' ? 'bg-base-200' : ''}`}>
                         <ChatBubbleOvalLeftIcon/>
                         Chat
@@ -100,12 +106,6 @@ export default function Root(props){
                     <button onClick={()=>props.handleTab('timer')} className={`btn btn-ghost btn-md rounded-full ${props.openTab === 'timer' ? 'bg-base-200' : ''}`}>
                         <ClockIcon/>
                         Timer
-                    </button>
-                </div>
-                <div>
-                    <button onClick={()=>props.handleTab('todo')} className={`btn btn-ghost btn-md rounded-full ${props.openTab === 'todo' ? 'bg-base-200' : ''}`}>
-                        <ClipboardDocumentCheckIcon/>
-                        To-do
                     </button>
                 </div>
             </div>

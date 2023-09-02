@@ -20,8 +20,6 @@ export default function ToDo(props)
     const [editingItem, setEditingItem] = useState(false)
     const [toast, setToast] = useState([])
 
-    console.log("my items", toDoItems )
-
     useEffect(() => {
         localStorage.setItem("toDoItems", JSON.stringify(toDoItems))
     },[toDoItems])
