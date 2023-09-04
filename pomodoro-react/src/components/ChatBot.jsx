@@ -38,14 +38,13 @@ export default function ChatBot(props)
                     messages: [
                     {
                         role: "user",
-                        content: `${message} (in less than 5 words)`
+                        content: `${message} (in less than 50 words)`
                     }],
                 }
                 ).then((result) => {
                 contentToAdd.content = result.choices[0].message.content;
                 props.setChat(prevValue => ([...prevValue, contentToAdd]))
                 setGenerating(false)
-                console.log(props.chat)
                 }).catch(error => console.log(error)) 
         }
 
@@ -81,7 +80,7 @@ export default function ChatBot(props)
                         className={`${chatError ? 'input input-error w-full max-w-x' : 'input input-primary w-full max-w-x'} btn-md sm:btn-sm `} 
                         value={chatQuestion}
                         onChange={handleChange}/>
-                        <button className={`btn btn-primary btn-md sm:btn-sm`}>Go</button>
+                        <button className={`btn btn-primary btn-md sm:btn-sm`}>Ask</button>
                     </form>            
 
                     <button 
@@ -92,13 +91,11 @@ export default function ChatBot(props)
                 </> 
                     <div className="max-container">
                 {generatingText && <ChatBubble chatItem={{question: questionToDisplay, content: "Typing..."}}/>}
-                {currentChat}                
-                <ChatBubble chatItem={{question:"", content: "Hi! I'm Pomodoro, a tomato!"}}/>
+                {currentChat}          
+                <ChatBubble chatItem={{question:"", content: "I'm here to help you study. Ask me anything."}}/>      
+                <ChatBubble chatItem={{question:"", content: "Hi! I'm Pomodoro!"}}/>
 
             </div>            
         </div>
     )
 }
-
-
-/*className="w-full h-fit rounded-md border-primary border bg-base-100 px-3 px-2 h-20 max-h-fit justify-self-end">*/
