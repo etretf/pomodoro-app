@@ -97,8 +97,8 @@ export default function Root(props){
                     </button>
                 </div>
                 <div>
-                    <button onClick={()=>props.handleTab('timer')} className={`btn btn-ghost btn-md rounded-full ${props.openTab === 'timer' ? 'bg-base-200' : ''}`}>
-                        <ClockIcon/>
+                    <button onClick={()=>props.handleTab('timer')} className={`btn btn-ghost btn-md rounded-full ${props.openTab === 'timer' ? 'bg-base-300' : ''}`}>
+                        <ClockIcon className="h-10 w-10"/>
                         Timer
                     </button>
                 </div>
@@ -106,12 +106,6 @@ export default function Root(props){
                     <button onClick={()=>props.handleTab('chat')} className={`btn btn-ghost btn-md rounded-full ${props.openTab === 'chat' ? 'bg-base-300' : ''}`}>
                         <ChatBubbleOvalLeftIcon className="h-10 w-10 py"/>
                         Chat
-                    </button>
-                </div>
-                <div>
-                    <button onClick={()=>props.handleTab('timer')} className={`btn btn-ghost btn-md rounded-full ${props.openTab === 'timer' ? 'bg-base-200' : ''}`}>
-                        <ClockIcon/>
-                        Timer
                     </button>
                 </div>
             </div>
