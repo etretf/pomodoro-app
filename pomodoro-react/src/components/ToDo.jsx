@@ -203,7 +203,7 @@ const toastItems = toast.map(item => (
 
     return(
         <div className={`home-component to-do-component max-container  ${props.openTab !== 'todo' && props.openTab !== 'all' ? 'hidden' : ''} ${props.openTab === 'all' && 'flex flex-col half-w-component'}`}>
-           <div className="toast toast-start w-80">
+           <div className={`toast toast-start w-80 ${props.openTab === "todo" && "toast-top"}`}>
             {toastItems}
             </div>
            

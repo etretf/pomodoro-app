@@ -10,7 +10,7 @@ export default function Pomodoro(props){
       <div className={`home-component relative justify-center overflow-auto flex flex-col ${props.openTab === 'timer' || props.openTab === 'all' ? '' : 'hidden' }`}>
 
       <div className='btn no-animation pointer-events-none bg-base-300 flex gap-7 m-5 p-2 join'>
-          <p className={ props.sessionType === 'short break' || props.sessionType === 'long break' ? "text-primary text-xl join-item" : "text-neutral text-xl join-item"}>
+          <p className={ props.sessionType === 'short break' || props.sessionType === 'long break' ? "text-primary text-xl join-item" : "text-mode-selected text-xl join-item"}>
             Break: {Math.floor(props.numSessions / 2)} 
           </p>
           <p className={ props.sessionType === 'study'? "text-primary text-xl join-item" : "text-neutral text-xl join-item"}>

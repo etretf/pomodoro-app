@@ -23,7 +23,8 @@ p {
 }
 
 .container {
-    @apply mx-auto;
+    @apply mx-auto px-2;
+    max-width: 1300px;
 }
 
 .grid-container {
@@ -141,6 +142,14 @@ p {
     max-height: 500px;
 }
 
+.text-mode-selected {
+    @apply text-gray-400;
+}
+
+[data-theme="night"] .text-mode-selected {
+    @apply text-gray-700;
+  }
+
 /* .todo, .chatbot {
     @apply hidden sm:block;
 } */
@@ -150,8 +159,9 @@ p {
     min-height: 80%;
     grid-template-rows: 2fr 0fr;
  }
- .progress-chart, .tasks{
+ .progress-chart, .tasks, .home-component{
     min-height: 100%;
+    max-height: 100%;
  }
 }
 

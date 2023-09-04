@@ -22,7 +22,7 @@ export default function ToDoItemTemplate(props)
     }
 
     return(
-        <div className='task-item task-item-edit'>
+        <div className={`task-item task-item-edit ${props.openTab === "todo" && "mb-3"}`}>
             <form className="w-full item-form py-2" onSubmit={() => props.submitItem(event, inputData, props.id)}>
                     <input 
                     type="text" 

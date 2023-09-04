@@ -128,7 +128,7 @@ export default function Progress(props){
         datasets: [
             {
                 label: 'Study sessions',
-                data: weeklyArray.map(item => item.count),
+                data: weeklyArray.map(item => Math.ceil(item.count /2)),
                 backgroundColor: 'rgb(75, 192, 192)'
             },
         ]
@@ -140,6 +140,7 @@ export default function Progress(props){
           legend: {
             position: 'top',
           },
+          
         },
     };    
 
@@ -160,7 +161,7 @@ export default function Progress(props){
     }
 
     return(
-        <div className="h-full container flex flex-col gap-4 min-h-fit">
+        <div className={`h-full container flex flex-col gap-4 min-h-fit ${props.openTab == "all" && "py-4"}`}>
             <div className={`progress-chart rounded-lg col-span-2 p-4 flex flex-col items-center bg-base-200 ${props.openTab === 'studyprogress' || props.openTab === 'all' ? '' : 'hidden'}`}>
                 <h2 className="p-5">My progress</h2>
                 { props.openTab === 'all' && 

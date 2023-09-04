@@ -18,7 +18,14 @@ export default function Home(props) {
     setTimerFullScreen(prevValue => !prevValue)
   }
     return (
-      <div className={`grid-container container ${timerFullScreen? "span-2": ""} pomodoro`}>
+      <div className={
+        `${props.openTab === "all"?
+        `container ${timerFullScreen? "span-2": ""} pomodoro h-full grid-container`
+        :
+        `h-full container flex flex-col gap-4 min-h-fit ${props.openTab == "all" && "py-4"}`
+      }`
+        
+        }>
         <Pomodoro
           fullScreen={timerFullScreen}
           openTab={props.openTab}

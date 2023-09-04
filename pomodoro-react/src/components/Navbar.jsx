@@ -88,23 +88,23 @@ export default function Root(props){
         </nav>
         <Outlet/>
         { props.currentSection === '/study' &&
-        <footer className="footer-nav sm:hidden sticky bottom-0">
-            <div className="w-full py-2 flex justify-center gap-8 mb-5">
+        <footer className="footer-nav sm:hidden sticky bottom-0 ">
+            <div className="w-full py-2 flex justify-center gap-7 mb-5 px-2">
                 <div>
-                    <button onClick={()=>props.handleTab('todo')} className={`btn btn-ghost btn-md rounded-full ${props.openTab === 'todo' ? 'bg-base-200' : ''}`}>
-                        <ClipboardDocumentCheckIcon/>
+                    <button onClick={()=>props.handleTab('todo')} className={`btn btn-ghost btn-md rounded-full  ${props.openTab === 'todo' ? 'bg-base-300' : ''}`}>
+                        <ClipboardDocumentCheckIcon className="h-10 w-10"/>
                         To-do
                     </button>
                 </div>
                 <div>
-                    <button onClick={()=>props.handleTab('chat')} className={`btn btn-ghost btn-md rounded-full ${props.openTab === 'chat' ? 'bg-base-200' : ''}`}>
-                        <ChatBubbleOvalLeftIcon/>
+                    <button onClick={()=>props.handleTab('chat')} className={`btn btn-ghost btn-md rounded-full ${props.openTab === 'chat' ? 'bg-base-300' : ''}`}>
+                        <ChatBubbleOvalLeftIcon className="h-10 w-10 py"/>
                         Chat
                     </button>
                 </div>
                 <div>
-                    <button onClick={()=>props.handleTab('timer')} className={`btn btn-ghost btn-md rounded-full ${props.openTab === 'timer' ? 'bg-base-200' : ''}`}>
-                        <ClockIcon/>
+                    <button onClick={()=>props.handleTab('timer')} className={`btn btn-ghost btn-md rounded-full ${props.openTab === 'timer' ? 'bg-base-300' : ''}`}>
+                        <ClockIcon className="h-10 w-10"/>
                         Timer
                     </button>
                 </div>
@@ -112,17 +112,17 @@ export default function Root(props){
         </footer>        
         }
         { props.currentSection === '/progress' && 
-        <footer className="footer-nav sm:hidden sticky bottom-0">
-        <div className="w-full py-2 flex justify-center px-10 mb-10">
+        <footer className="footer-nav sm:hidden sticky bottom-0 ">
+        <div className="w-full py-2 flex justify-center gap-7 mb-5 px-2">
                 <div>
-                    <button onClick={()=>props.handleTab('studyprogress')} className={`btn btn-ghost btn-md rounded-full mb-2 ${props.openTab === 'studyprogress' ? 'bg-base-200' : ''}`}>
-                        <ChartBarIcon className="w-10 block pb-2 min-h-fit"/>
+                    <button onClick={()=>props.handleTab('studyprogress')} className={`btn btn-ghost btn-md rounded-full mb-2 ${props.openTab === 'studyprogress' ? 'bg-base-300' : ''}`}>
+                        <ChartBarIcon className="h-10 w-10"/>
                         Study Progress
                     </button>
                 </div>
                 <div>
-                    <button onClick={()=>props.handleTab('tasks')} className={`btn btn-ghost btn-md rounded-full ${props.openTab === 'tasks' ? 'bg-base-200' : ''}`}>
-                        <DocumentCheckIcon className="w-10 block pb-2"/>
+                    <button onClick={()=>props.handleTab('tasks')} className={`btn btn-ghost btn-md rounded-full ${props.openTab === 'tasks' ? 'bg-base-300' : ''}`}>
+                        <DocumentCheckIcon className="h-10 w-10"/>
                         Completed Tasks
                     </button>
                 </div>
