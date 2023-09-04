@@ -61,7 +61,7 @@ useEffect(() => {
 
 
 const [data, setData] = useState({key:'value'});
-const [chat, setChat] = useState([{1:2},{3:4}]);
+const [chat, setChat] = useState([]);
 //for toast
 const [toast, setToast] = useState([{title:"bob", id: nanoid()}]);
 //time in seconds
