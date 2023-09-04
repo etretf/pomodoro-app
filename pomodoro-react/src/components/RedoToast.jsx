@@ -16,7 +16,7 @@ export default function RedoToast(props)
 
 
     return(
-        <div className="alert p-2  flex flex-column flex-wrap">
+        <div className="alert p-2 flex flex-column flex-wrap bg-primary-content">
             <progress className="progress w-full p-0 m-0" value={timer} max="3" ></progress>
             <div className='flex min-w-full items-center justify-between'>
             <span className='text-xst'>Deleted: {props.title}</span>

@@ -129,7 +129,7 @@ export default function ToDo(props)
         const today = new Date()
         const hourFormat = today.getHours() > 11 ? " pm" : " am"
         const hours = today.getHours() % 12;
-        const minutes = today.getMinutes() < 10 ? `0${today.getMinutes}` : today.getMinutes();
+        const minutes = today.getMinutes() < 10 ? `0${today.getMinutes()}` : today.getMinutes();
         const date = hours + ":" + minutes + hourFormat + ", " + monthNames[today.getMonth()] + " " + today.getDate() + ", " + today.getFullYear();
         setToDoItems(prevValue => prevValue.map(item => item.id === id? 
             {...item, complete: !item.complete, timestamp: date} 
