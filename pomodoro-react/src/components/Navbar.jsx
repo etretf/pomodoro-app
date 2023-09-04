@@ -97,15 +97,15 @@ export default function Root(props){
                     </button>
                 </div>
                 <div>
-                    <button onClick={()=>props.handleTab('chat')} className={`btn btn-ghost btn-md rounded-full ${props.openTab === 'chat' ? 'bg-base-200' : ''}`}>
-                        <ChatBubbleOvalLeftIcon/>
-                        Chat
-                    </button>
-                </div>
-                <div>
                     <button onClick={()=>props.handleTab('timer')} className={`btn btn-ghost btn-md rounded-full ${props.openTab === 'timer' ? 'bg-base-200' : ''}`}>
                         <ClockIcon/>
                         Timer
+                    </button>
+                </div>
+                <div>
+                    <button onClick={()=>props.handleTab('chat')} className={`btn btn-ghost btn-md rounded-full ${props.openTab === 'chat' ? 'bg-base-200' : ''}`}>
+                        <ChatBubbleOvalLeftIcon/>
+                        Chat
                     </button>
                 </div>
             </div>
