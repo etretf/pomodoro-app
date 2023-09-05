@@ -13,16 +13,15 @@ const openai = new OpenAI(
 
 export default function ChatBot(props)
 {
-    //const [chat, setChat] = useState([
-    //]);
-    // console.log("chat" + {props})
     const [chatQuestion, setChatQuestion] = useState("")
     const [questionToDisplay, setQuestionToDisplay] = useState("")
     const [generatingText, setGenerating] = useState(false)
     const [chatError, setChatError] = useState(false);
+    const [apiError, setApiError] = useState(false);
     
     const handleSubmit = async (event, message) => {
         event.preventDefault()
+        setApiError(false);
         if(message.length < 1){
             setChatError(true)
         }
@@ -44,7 +43,7 @@ export default function ChatBot(props)
                 contentToAdd.content = result.choices[0].message.content;
                 props.setChat(prevValue => ([...prevValue, contentToAdd]))
                 setGenerating(false)
-                }).catch(error => console.log(error)) 
+                }).catch(error => setApiError(true)) 
         }
 
     }
@@ -89,7 +88,8 @@ export default function ChatBot(props)
                     >Clear Chat</button>                    
                 </> 
                     <div className="max-container">
-                {generatingText && <ChatBubble chatItem={{question: questionToDisplay, content: "Typing..."}}/>}
+                {apiError && <ChatBubble chatItem={{question: questionToDisplay, content: "Error has occured."}}/>}
+                {generatingText && !apiError && <ChatBubble chatItem={{question: questionToDisplay, content: "Typing..."}}/>}
                 {currentChat}          
                 <ChatBubble chatItem={{question:"", content: "I'm here to help you study. Ask me anything."}}/>      
                 <ChatBubble chatItem={{question:"", content: "Hi! I'm Pomodoro!"}}/>

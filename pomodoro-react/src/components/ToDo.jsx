@@ -146,14 +146,11 @@ function addToast(toAdd)
 //function will delete toast 
 function deleteToast(id)
 {
-  console.log("done")
   setToast(prevValue => {
     
     const array = [...prevValue];
     const index = array.findIndex(i => i.id == id);
-    console.log(index, id)
     index > -1 && array.splice(index, 1) 
-    console.log(array)
     return (array)
   })
 }
@@ -208,7 +205,7 @@ const toastItems = toast.map(item => (
             {toastItems}
             </div>
            
-            <div className="x-flex w-full">
+            <div className="x-flex w-full mb-1">
                 <h2>My Tasks</h2>
                 {props.openTab === 'all' && 
                     <button 

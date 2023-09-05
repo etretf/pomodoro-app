@@ -48,7 +48,7 @@ export default function Pomodoro(props){
         
       </div>
 
-        <label className="swap swap-rotate absolute bottom-2 right-4 hidden sm:inline-block">
+        <label className={`swap swap-rotate absolute bottom-2 right-4 ${props.openTab != "all" && "hidden"}`}>
             <input type="checkbox" onChange={props.handleChange} id='bob'/>
             <ChevronDownIcon className="swap-off fill-current h-6 w-6 text-white-500 " />
             <ChevronUpIcon className="swap-on fill-current h-6 w-6 text-white-500 " />
